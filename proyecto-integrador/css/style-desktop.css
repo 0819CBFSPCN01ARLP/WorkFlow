@@ -1,0 +1,5 @@
+@media screen and (min-width: 1200px) {
+
+	.main-header ul li.search-mob {display: none;}
+
+}
