@@ -295,6 +295,42 @@ aside .fas{
   text-decoration: none;
 }
 
+/* CONTACT */
+
+.contact-form {
+	box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
+	padding: 40px;
+	margin: 0 auto 100px;
+}
+
+.card {
+	border: 0;
+
+}
+
+.form-control {
+	background-color: #f2f2f2;
+	border: 0;
+
+}
+
+.contact-but {
+	background: #604bab;
+  width: 100%;
+  border: 0;
+	color: #FFFFFF;
+  font-size: 14px;
+	padding: 15px;
+}
+
+.subject {
+	margin-bottom: 20px
+}
+
+.card-body {
+	padding: 0
+}
+
 /* PROFILE*/
 .user-post.education{
     padding: 20px 20px 10px 20px;
