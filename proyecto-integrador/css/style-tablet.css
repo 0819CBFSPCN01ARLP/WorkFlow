@@ -1,4 +1,4 @@
-@media screen and (min-width: 1024px) {
+@media screen and (min-width: 768px) {
 
 	/* HEADER */
 	.main-header .form-inline,
@@ -14,7 +14,7 @@
 	.header-user{
 		min-height: 250px;
 		position: relative;
-    	margin-bottom: 60px;
+    margin-bottom: 60px;
 	}
 
 	.header-user .user-info{
@@ -56,4 +56,6 @@
 	.news .content-box a:last-child {margin-bottom: 0 !important;}
 	.news .content-box a p {margin: 0;}
 
+	.name-mob {
+		display: none;}
 }

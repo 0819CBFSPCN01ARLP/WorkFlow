@@ -53,7 +53,7 @@ body {
 }
 
 .main-header .fas{
-    padding-top:10px;
+    padding-top:4px;
     color:#fff;
 }
 
@@ -73,9 +73,12 @@ body {
     margin-left: 10px;
 }
 
+
+
 /* FEED */
 .main{
-    padding-top: 110px;
+    padding-top: 77px;
+		padding-bottom: 50px;
 }
 .user-info,
 .user-logo,
@@ -86,6 +89,9 @@ body {
 
 .user-info{
   margin-bottom:20px;
+}
+.user-post{
+	margin-top: 20px;
 }
 
 .user-info a{
@@ -98,7 +104,8 @@ body {
 }
 .user-post .fas{
   vertical-align: middle;
-  margin-right:10px;
+  margin-right:-2px;
+	font-size: 1.5em;
 }
 .user-comment{
   font-size: 0.85rem;
@@ -314,3 +321,57 @@ aside .fas{
     padding: 20px;
     margin-bottom:0;
 }
+
+/* TEAMS */
+
+/* section teams */
+.border-bot {
+	border-bottom: 2px solid #6f42c1;
+
+}
+
+/* articles users */
+.title-team {
+	color: #453f96
+}
+.users {
+	list-style: none;}
+.users .user-logo {
+	margin-bottom: 10px}
+.more {
+	width: 50px;
+	height: 50px;
+	border-radius: 50%;
+	background: #5a4f82;
+	display: flex;
+	justify-content: center;
+	text-align: center;
+  margin:0px auto;
+  padding:3%
+}
+
+.teams {
+	color: black
+}
+
+/* NAV BOTTOM MOBILE */
+
+.bg-color {
+	background-color: #74bb8cc9
+}
+.navbar .fa-2x {
+	font-size: 1.5em}
+.name-mob {
+	font-size: 1em;}
+.name-desk {
+		display: none
+	}
+.head-options .fa-2x {
+	font-size: 1.5em
+}
+.head-options ul {
+	margin-right: 0
+}
+
+.inbox-desk .fa-envelope {
+	display: none;}
