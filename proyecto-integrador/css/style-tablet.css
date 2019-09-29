@@ -43,6 +43,7 @@
 	}
 	}
 	/* ASIDE */
+	.mobile-sidebar {display: none;}
 	aside {display: block;}
 	aside ul {
 		margin: 0;

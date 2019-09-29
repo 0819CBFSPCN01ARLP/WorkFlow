@@ -239,6 +239,19 @@ aside {display: none;}
 aside .fas{
   color:#604bab;
 }
+
+.mobile-sidebar .nav-link {border-radius: 10px 10px 0 0; }
+.mobile-sidebar .nav-link.active {background-color:#fff; color: #a004fa;}
+.mobile-sidebar .tab-content {float:left; width: 100%; border-radius: 0 0 10px 10px;}
+.mobile-sidebar .tab-content ul {list-style-type: none; margin: 0; float: left; width: 100%; padding: 0;}
+.mobile-sidebar .tab-content ul li {margin-bottom: 10px;}
+.mobile-sidebar .tab-content ul.birthdays li,
+.mobile-sidebar .tab-content p.hastags a {margin-right: 15px;}
+.mobile-sidebar .tab-content .news {display: block;border: solid 1px #ddd;	color: #272727;}
+.mobile-sidebar .tab-content .news h3 { font-size: 18px;  font-weight: 600;}
+.mobile-sidebar .tab-content .news p {font-size: 0.85em;margin: 0;}
+
+
 /* LOGIN */
 .login-form,
 .register-form {

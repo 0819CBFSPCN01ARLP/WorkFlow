@@ -1,74 +1,11 @@
-<!DOCTYPE html>
-<html>
-	<head>
-		<meta charset="utf-8">
-		<title>Poyecto integrador</title>
-		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-		<link rel="stylesheet" href="css/style.css">
-		<link rel="stylesheet" media="screen and (min-width:1024px)" href="css/style-tablet.css">
-		<link rel="stylesheet" media="screen and (min-width:1200px)" href="css/style-desktop.css">
-		<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-    	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-    	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
-		<script src="https://kit.fontawesome.com/47b7e03e46.js"></script>
-		<link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i&display=swap" rel="stylesheet">
-	</head>
-	<body>
-
-	<header class="container-fluid mb-5 main-header">
-		<div class="container">
-			<div class="row">
-
-				<div class="col-5 col-lg-3 py-3">
-					<div class="dropdown main-menu pr-3">
-					  <a href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-					    <i class="fas fa-bars fa-2x"></i>
-					  </a>
-						<div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
- 						 <a class="dropdown-item" href="about.php">About Us</a>
- 						 <a class="dropdown-item" href="faqs.php">Faqs</a>
- 						 <a class="dropdown-item" href="contact.php">Contact Us</a>
- 						 <a class="dropdown-item" href="login.php">Login/Logout</a>
- 					 </div>
- 			 </div>
- 				 <a class="navbar-brand name-mob" href="index.php">W<strong>F</strong></a>
- 				 <a class="navbar-brand name-desk" href="index.php">Work<strong>FLow</strong></a>
- 			 </div>
-
-				<form class="form-inline col-lg-5 py-3">
-	        <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search">
-	      </form>
-
-				<div class="col-7 col-lg-4 py-3 head-options">
-					<ul>
-						<li class="search-mob"><a href=""><i class="fas fa-search fa-2x"></i></a></li>
-						<li><a href=""><i class="fas fa-bell fa-2x"></i></a></li>
-						<li class="inbox-desk"><a href=""><i class="fas fa-envelope fa-2x"></i></a></li>
-						<!--<li><a href=""><i class="fas fa-sign-in-alt fa-2x"></i></a></li>-->
-						<li class="user-logo">
-							<a href="profile.php">
-								<img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSp3gZ8rLGb-NOO4VDjfiM-RBq0dkMFx2rX0-wnNje_L1Gq06qi" alt="">
-								<span>Ross Geller</span>
-							</a>
-						</li>
-					</ul>
-				</div>
-
-<!-- navbar bottom -->
-			<nav class="navbar navbar-bot nav justify-content-center fixed-bottom navbar-light bg-color">
-  				<ul>
-  					<li><a href="profile.html" class="nav-item nav-link active"><i class="fas fa-user fa-2x fa-col"></i></a></li>
-						<li class="mar"><a href="" class="nav-item nav-link active"><i class="fas fa-envelope fa-2x"></i></a></li>
-					</ul>
-			</nav>
-
-			</div>
-		</div>
-	</header>
+<?php require_once('includes/header.php'); ?>
 
 	<main class="container main">
 		<div class="row">
+
+			<!-- START:SECTION -->
+			<?php require_once('includes/sidebar-mobile.php'); ?>
+			<!-- END:SECTION -->
 
 			<!-- START:MAIN-CONTENT-COLUMN -->
 			<section class="col-12 col-sm-12 col-lg-8 feed-content">
@@ -148,101 +85,8 @@
 			</section>
 
 			<!-- START: SIDEBAR -->
-			<aside class="col-12 col-sm-12 col-lg-4">
-
-				<!-- START:BIRTHDAY-BOX -->
-				<article class="user-post p-3 mb-3 birthday bg rounded-border">
-					<div class="row">
-						<div class="col-12 col-sm-12 col-lg-12 pt-2 ico-box">
-							<h3><i class="fas fa-birthday-cake fa-2x mr-2"></i> Today's Birthdays</h3>
-						</div>
-						<div class="col-10 col-sm-10 col-lg-10 content-box">
-							<ul class="mb-3">
-								<li class="user-logo">
-									<a href="#">
-										<img src="https://everydaynutrition.co.uk/wp-content/uploads/2015/01/default-user-avatar.png" alt="">
-										<span>User Name</span>
-									</a>
-								</li>
-								<li class="user-logo">
-									<a href="#">
-										<img src="https://everydaynutrition.co.uk/wp-content/uploads/2015/01/default-user-avatar.png" alt="">
-										<span>User Name</span>
-									</a>
-								</li>
-							</ul>
-						</div>
-					</div>
-				</article><!-- END:BIRTHDAY-BOX -->
-
-				<!-- START:TEAMS-BOX -->
-				<article class="user-post p-3 mb-3 teams bg rounded-border">
-					<div class="row">
-						<div class="col-12 col-sm-12 col-lg-12 pt-2 ico-box">
-							<h3><i class="fas fa-users fa-2x mr-2"></i><a class="teams" href="teams.html">Teams</a></h3>
-						</div>
-						<div class="col-12 col-sm-12 col-lg-12 content-box">
-							<ul class="mb-3 users">
-								<li class="user-logo">
-									<a href="">| Account Management |</a>
-								</li>
-								<li class="user-logo">
-									<a href="">Accounting |</a>
-								</li>
-								<li class="user-logo">
-									<a href="">Analitycs Services |</a>
-								</li>
-								<li class="user-logo">
-									<a href="">Marketing |</a>
-								</li>
-								<li class="user-logo">
-									<a href="">Consulting |</a>
-								</li>
-								<li class="user-logo">
-									<a href="">Change Management |</a>
-								</li>
-								<li class="user-logo">
-									<a href=""><h4><strong>&nbsp;+</strong></h4></a>
-								</li>
-
-							</ul>
-						</div>
-					</div>
-				</article>
-				<!-- END:TEAMS-BOX -->
-
-				<!-- START:HASHTAG-BOX -->
-				<article class="user-post p-3 mb-3 hashtag bg rounded-border">
-					<div class="row">
-						<div class="col-12 col-sm-12 col-lg-12 pt-2 ico-box">
-							<h3><i class="fas fa-hashtag fa-2x mr-2"></i> Hashtags</h3>
-						</div>
-						<div class="col-12 col-sm-12 col-lg-12 content-box">
-							<p><a href="">#hastag1</a> <a href="">#hastag2</a> <a href="">#hastag1</a> <a href="">#hastag2</a> <a href="">#hastag1</a> <a href="">#hastag2</a></p>
-						</div>
-					</div>
-				</article><!-- END:HASHTAG-BOX -->
-
-				<!-- START:NEWS-BOX -->
-				<article class="user-post p-3 mb-3 news bg rounded-border">
-					<div class="row">
-						<div class="col-12 col-sm-12 col-lg-12 pt-2 ico-box">
-							<h3><i class="fas fa-newspaper fa-2x mr-2"></i> News</h3>
-						</div>
-						<div class="col-12 col-sm-12 col-lg-12 content-box">
-							<a href="" class="p-3 mb-3">
-								<h3>Sample Title</h3>
-								<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore ...</p>
-							</a>
-							<a href="" class="p-3 mb-3">
-								<h3>Sample Title</h3>
-								<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore ...</p>
-							</a>
-						</div>
-					</div>
-				</article><!-- END:NEWS-BOX -->
-
-			</aside><!-- END: SIDEBAR -->
+			<?php require_once('includes/sidebar.php'); ?>
+			<!-- END: SIDEBAR -->
 
 		</div>
 	</main>
