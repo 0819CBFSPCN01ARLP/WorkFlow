@@ -1,36 +1,36 @@
 <?php
-//
-// if (isset ($_POST["submit"])) {
-//   $name = $_POST["name"];
-//   $password = $_POST["password"];
-//
-//   $errores=array();
-//
-// // Name
-//   if (empty($name)) {
-//     array_push($errores, "*El campo de usuario está vacío.");
-//   } elseif (strlen($name) < 8) {
-//     array_push ($errores, "*El nombre de usuario debe tener al menos 8 caracteres.");
-//     }
-//
-// // Password
-//   if (empty($password)) {
-//     array_push($errores, "*El campo de contraseña está vacío.");
-//     } elseif (!preg_match('`[0-9]`',$password)) {
-//     array_push ($errores, "*La contraseña debe tener al menos un carácter numérico.");
-//     }
-//
-//
-// // Mostrar errores:
-//   if (count($errores) > 0){
-//       echo "<div class='error'>";
-//       for ($i=0; $i < count($errores) ; $i++) {
-//         echo "<li>" .$errores[$i]."</div>";
-//         }
-//       // } else {
-//       //   header("Location: index.php");
-//       }
-//   }
+
+if (isset ($_POST["submit"])) {
+  $name = $_POST["name"];
+  $password = $_POST["password"];
+
+  $errores=array();
+
+// Name
+  if (empty($name)) {
+    array_push($errores, "*El campo de usuario está vacío.");
+  } elseif (strlen($name) < 8) {
+    array_push ($errores, "*El nombre de usuario debe tener al menos 8 caracteres.");
+    }
+
+// Password
+  if (empty($password)) {
+    array_push($errores, "*El campo de contraseña está vacío.");
+    } elseif (!preg_match('`[0-9]`',$password)) {
+    array_push ($errores, "*La contraseña debe tener al menos un carácter numérico.");
+    }
+
+
+// Mostrar errores:
+  if (count($errores) > 0){
+      echo "<div class='error'>";
+      for ($i=0; $i < count($errores) ; $i++) {
+        echo "<li>" .$errores[$i]."</div>";
+        }
+      // } else {
+      //   header("Location: index.php");
+      }
+  }
 
 
 
