@@ -26,13 +26,13 @@
 					    <i class="fas fa-bars fa-2x"></i>
 					  </a>
 					  <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-					    <a class="dropdown-item" href="about.html">About Us</a>
-					    <a class="dropdown-item" href="faqs.html">Faqs</a>
-					    <a class="dropdown-item" href="profile.html">My profile</a>
-						<a class="dropdown-item" href="login.html">Login/Logout</a>
+					    <a class="dropdown-item" href="about.php">About Us</a>
+					    <a class="dropdown-item" href="faqs.php">Faqs</a>
+					    <a class="dropdown-item" href="profile.php">My profile</a>
+						<a class="dropdown-item" href="login.php">Login/Logout</a>
 					  </div>
 					</div>
-					<a class="navbar-brand" href="index.html">Work<strong>Flow</strong></a>
+					<a class="navbar-brand" href="index.php">Work<strong>Flow</strong></a>
 				</div>
 
 				<form class="form-inline col-lg-5 py-3">
@@ -46,7 +46,7 @@
 						<li><a href=""><i class="fas fa-envelope fa-2x"></i></a></li>
 						<!--<li><a href=""><i class="fas fa-sign-in-alt fa-2x"></i></a></li>-->
 						<li class="user-logo">
-							<a href="profile.html">
+							<a href="profile.php">
 								<img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSp3gZ8rLGb-NOO4VDjfiM-RBq0dkMFx2rX0-wnNje_L1Gq06qi" alt="">
 								<span>Ross Geller</span>
 							</a>

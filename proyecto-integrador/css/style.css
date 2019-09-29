@@ -411,3 +411,10 @@ aside .fas{
 
 .inbox-desk .fa-envelope {
 	display: none;}
+
+	/* ERRORES EN FORMULARIOS */
+.error {
+		color: red;
+		text-align: left;
+    margin-top: 10px;
+	}

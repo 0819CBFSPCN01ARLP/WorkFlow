@@ -26,13 +26,13 @@
 						    <i class="fas fa-bars fa-2x"></i>
 						  </a>
 						  <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-						    <a class="dropdown-item" href="about.html">About Us </a>
-						    <a class="dropdown-item" href="faqs.html">Faqs</a>
-								<a class="dropdown-item" href="login.html">Login/Logout</a>
+						    <a class="dropdown-item" href="about.php">About Us </a>
+						    <a class="dropdown-item" href="faqs.php">Faqs</a>
+								<a class="dropdown-item" href="login.php">Login/Logout</a>
 						  </div>
 					</div>
-						<a class="navbar-brand name-mob" href="index.html">W<strong>F</strong></a>
-						<a class="navbar-brand name-desk" href="index.html">Work<strong>FLow</strong></a>
+						<a class="navbar-brand name-mob" href="index.php">W<strong>F</strong></a>
+						<a class="navbar-brand name-desk" href="index.php">Work<strong>FLow</strong></a>
 					</div>
 
 					<form class="form-inline col-lg-5 py-3">

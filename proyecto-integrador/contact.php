@@ -1,8 +1,21 @@
+<?php
+
+$name = null;
+$errores=array();
+// si vino info por POST
+if (count($_POST)) {
+	// Variables para persisitir la info:
+	$name = $_POST["name"];
+	$email = $_POST["email"];
+	$message = $_POST["message"];
+}
+
+?>
 <!DOCTYPE html>
 <html>
 	<head>
 		<meta charset="utf-8">
-		<title>Poyecto integrador</title>
+		<title>WorkFlow| Contact Us</title>
 		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 		<link rel="stylesheet" href="css/style.css">
@@ -26,14 +39,14 @@
 					    <i class="fas fa-bars fa-2x"></i>
 					  </a>
 					  <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-					    <a class="dropdown-item" href="about.html">About Us</a>
-					    <a class="dropdown-item" href="faqs.html">Faqs</a>
-							<a class="dropdown-item" href="contact.html">Contact Us</a>
-							<a class="dropdown-item" href="login.html">Login/Logout</a>
+					    <a class="dropdown-item" href="about.php">About Us</a>
+					    <a class="dropdown-item" href="faqs.php">Faqs</a>
+							<a class="dropdown-item" href="contact.php">Contact Us</a>
+							<a class="dropdown-item" href="login.php">Login/Logout</a>
 					  </div>
 				</div>
-					<a class="navbar-brand name-mob" href="index.html">W<strong>F</strong></a>
-					<a class="navbar-brand name-desk" href="index.html">Work<strong>FLow</strong></a>
+					<a class="navbar-brand name-mob" href="index.php">W<strong>F</strong></a>
+					<a class="navbar-brand name-desk" href="index.php">Work<strong>FLow</strong></a>
 				</div>
 
 				<form class="form-inline col-lg-5 py-3">
@@ -74,8 +87,8 @@
 	<!-- START:MAIN-CONTENT-COLUMN -->
 
 
-		<!-- START:ARTICLE -->
-		<article class="bg p-4 rounded-border mb-5 ">
+<!-- START:ARTICLE -->
+<article class="bg p-4 rounded-border mb-5 ">
 
 	<!-- Material form contact -->
 <div class="card col col-sm-12 col-lg-6 offset-lg-3 ">
@@ -88,49 +101,32 @@
     <div class="card-body px-lg-5 pt-0">
 
         <!-- Form -->
-        <form class="text-center" style="color: #757575;" action="#!">
+        <form class="text-center" style="color: #757575;" action="contact.php" method="post">
 
 				<div class="contact-form">
 					<!-- Name -->
             <div class="md-form mt-3">
-
-                <input type="text" placeholder="Name" id="materialContactFormName" class="form-control">
+                <input type="text" placeholder="Name" name="name" class="form-control" value="<?php if(isset($name)) echo $name?>">
                 <label for="materialContactFormName"></label>
             </div>
 
             <!-- E-mail -->
             <div class="md-form">
-                <input type="email" placeholder="Email" id="materialContactFormEmail" class="form-control">
+                <input type="email" placeholder="Email" name="email" class="form-control" value="<?php if(isset($email)) echo $email?>">
                 <label for="materialContactFormEmail"></label>
             </div>
 
-            <!-- Subject -->
-						<!-- <div class="subject">
-						<span>Subject</span>
-            <select class="mdb-select">
-                <option value="" disabled>Choose option</option>
-                <option value="1" selected>Feedback</option>
-                <option value="2">Report a bug</option>
-                <option value="3">Feature request</option>
-                <option value="4">Feature request</option>
-            </select>
-						</div> -->
-
             <!--Message-->
             <div class="md-form">
-                <textarea id="materialContactFormMessage" placeholder="Message" class="form-control md-textarea" rows="3"></textarea>
+                <textarea id="materialContactFormMessage" name="message" placeholder="Message" class="form-control md-textarea" rows="3" value="<?php if(isset($message)) echo $message?>"></textarea>
                 <label for="materialContactFormMessage"></label>
             </div>
 
-            <!-- Copy -->
-            <div class="form-check">
-                <input type="checkbox" class="form-check-input" id="materialContactFormCopy">
-                <label class="form-check-label" for="materialContactFormCopy">Send me a copy of this message</label>
-            </div>
+          	<!-- Send button -->
 
-            <!-- Send button -->
+            <button class=" contact-but btn btn-outline-info btn-block z-depth-0 my-4 waves-effect" name="submit" type="submit">SEND</button>
 
-            <button class=" contact-but btn btn-outline-info btn-block z-depth-0 my-4 waves-effect" type="submit">SEND</button>
+						<?php require_once("validacion_contactUs.php"); ?>
 
 					</div>
         </form>

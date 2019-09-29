@@ -2,7 +2,7 @@
 <html>
 	<head>
 		<meta charset="utf-8">
-		<title>Poyecto integrador</title>
+		<title>WorkFlow| About</title>
 		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 		<link rel="stylesheet" href="css/style.css">
@@ -27,13 +27,13 @@
 						    <i class="fas fa-bars fa-2x"></i>
 						  </a>
 						  <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-						    <a class="dropdown-item" href="about.html">About Us </a>
-						    <a class="dropdown-item" href="faqs.html">Faqs</a>
-								<a class="dropdown-item" href="login.html">Login/Logout</a>
+						    <a class="dropdown-item" href="about.php">About Us </a>
+						    <a class="dropdown-item" href="faqs.php">Faqs</a>
+								<a class="dropdown-item" href="login.php">Login/Logout</a>
 						  </div>
 					</div>
-						<a class="navbar-brand name-mob" href="index.html">W<strong>F</strong></a>
-						<a class="navbar-brand name-desk" href="index.html">Work<strong>FLow</strong></a>
+						<a class="navbar-brand name-mob" href="index.php">W<strong>F</strong></a>
+						<a class="navbar-brand name-desk" href="index.php">Work<strong>FLow</strong></a>
 					</div>
 
 					<form class="form-inline col-lg-5 py-3">
@@ -58,7 +58,7 @@
 	<!-- navbar bottom -->
 				<nav class="navbar navbar-bot nav justify-content-center fixed-bottom navbar-light bg-color">
 	  				<ul>
-	  					<li><a href="profile.html" class="nav-item nav-link active"><i class="fas fa-user fa-2x"></i></a></li>
+	  					<li><a href="profile.php" class="nav-item nav-link active"><i class="fas fa-user fa-2x"></i></a></li>
 							<li class="mar"><a href="" class="nav-item nav-link active"><i class="fas fa-envelope fa-2x"></i></a></li>
 						</ul>
 				</nav>
