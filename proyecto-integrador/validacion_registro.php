@@ -44,36 +44,36 @@ if (isset($_POST["submit"])) {
       }
   }
 
-// _________________________________________
-// $pathUsuarios = "db/usuario.json";
-// $arrayUsuarios= [];
-//
-//
-// if(file_exists($pathUsuarios)){
-//   $usuarioJson = file_get_contents($pathUsuarios);
-//
-//   $arrayUsuarios = json_decode($usuarioJson,true);
-// }
-//
-// // guardar datos en un array con contraseña encriptada
-// $usuario = [
-//   "id" => count($arrayUsuarios),
-//   "name"=> $_POST["name"],
-//   "email"=> $_POST["email"],
-//   "password"=> password_hash($_POST["password"] , PASSWORD_DEFAULT),
-//   "password_verify" => password_hash($_POST["password_verify"] , PASSWORD_DEFAULT)
-// ];
-//
-// // AGREGAMOS USUARIO NUEVO A ARRAY DE USUARIOS
-// $arrayUsuarios[] = $usuario;
-//
-//
-// // CONVERTIMOS A JSON EL ARRAY DE USUARIO
-// $usuarioJSON = json_encode($arrayUsuarios, JSON_PRETTY_PRINT);
-//
-//
-// // GUARDAR EL USUARIO A UN ARCHIVO
-// file_put_contents("db/usuario.json", $usuarioJSON);
+
+$pathUsuarios = "db/usuario.json";
+$arrayUsuarios= [];
+
+
+if(file_exists($pathUsuarios)){
+  $usuarioJson = file_get_contents($pathUsuarios);
+
+  $arrayUsuarios = json_decode($usuarioJson,true);
+}
+
+// guardar datos en un array con contraseña encriptada
+$usuario = [
+  "id" => count($arrayUsuarios),
+  "name"=> $_POST["name"],
+  "email"=> $_POST["email"],
+  "password"=> password_hash($_POST["password"] , PASSWORD_DEFAULT),
+  "password_verify" => password_hash($_POST["password_verify"] , PASSWORD_DEFAULT)
+];
+
+// AGREGAMOS USUARIO NUEVO A ARRAY DE USUARIOS
+$arrayUsuarios[] = $usuario;
+
+
+// CONVERTIMOS A JSON EL ARRAY DE USUARIO
+$usuarioJSON = json_encode($arrayUsuarios, JSON_PRETTY_PRINT);
+
+
+// GUARDAR EL USUARIO A UN ARCHIVO
+file_put_contents("db/usuario.json", $usuarioJSON);
 
 
 
