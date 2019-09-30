@@ -2,14 +2,33 @@
 
 $name = null;
 $errores=array();
+
 // si vino info por POST
 if (count($_POST)) {
-	// Variables para persisitir la info:
+
 	$name = $_POST["name"];
 	$email = $_POST["email"];
 	$message = $_POST["message"];
-}
 
+    // Name
+      if (empty($name)) {
+        array_push($errores, "*The username field is empty.");
+      } elseif (strlen($name) < 8) {
+        array_push ($errores, "*The username must have at least 8 characters.");
+        }
+
+    // email
+      if (empty($email)) {
+        array_push($errores, "*The email field is empty.");
+        } elseif (!filter_var($email , FILTER_VALIDATE_EMAIL)){
+        array_push ($errores, "*The email is invalid. Please try again.");
+        }
+
+    // Message
+    if (empty($message)) {
+        array_push($errores, "*The message field is empty.");
+    }
+}
 ?>
 
 <?php require_once('includes/header.php'); ?>
@@ -31,36 +50,28 @@ if (count($_POST)) {
 
     <!--Card content-->
     <div class="card-body px-lg-5 pt-0">
-
+        <?php if (count($_POST) && ($errores)) : ?>
+          <div class="alert alert-danger">
+              <h4><strong>Oops!</strong></h4>
+              <?php foreach ($errores as $error): ?>
+                  <p><?php echo $error ?></p>
+              <?php endforeach; ?>
+          </div>
+        <?php endif; ?>
         <!-- Form -->
-        <form class="text-center" style="color: #757575;" action="contact.php" method="post">
+        <form class="form contact-form" style="color: #757575;" action="contact.php" method="post">
 
-				<div class="contact-form">
-					<!-- Name -->
-            <div class="md-form mt-3">
-                <input type="text" placeholder="Name" name="name" class="form-control" value="<?php if(isset($name)) echo $name?>">
-                <label for="materialContactFormName"></label>
-            </div>
-
+			<!-- Name -->
+            <input type="text" placeholder="Name" name="name" value="<?php if(isset($name)) echo $name?>">
+            
             <!-- E-mail -->
-            <div class="md-form">
-                <input type="email" placeholder="Email" name="email" class="form-control" value="<?php if(isset($email)) echo $email?>">
-                <label for="materialContactFormEmail"></label>
-            </div>
+            <input type="email" placeholder="Email" name="email" value="<?php if(isset($email)) echo $email?>">
 
-            <!--Message-->
-            <div class="md-form">
-                <textarea id="materialContactFormMessage" name="message" placeholder="Message" class="form-control md-textarea" rows="3" value="<?php if(isset($message)) echo $message?>"></textarea>
-                <label for="materialContactFormMessage"></label>
-            </div>
+            <!-- Message -->
+            <textarea id="materialContactFormMessage" name="message" placeholder="Message" rows="3" value="<?php if(isset($message)) echo $message?>"></textarea>
 
           	<!-- Send button -->
-
             <button class=" contact-but btn btn-outline-info btn-block z-depth-0 my-4 waves-effect" name="submit" type="submit">SEND</button>
-
-						<?php require_once("validacion_contactUs.php"); ?>
-
-					</div>
         </form>
         <!-- Form -->
 

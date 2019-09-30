@@ -9,21 +9,21 @@ if (isset($_POST["submit"])) {
 
 // Name
   if (empty($name)) {
-    array_push($errores, "*El campo de usuario está vacío.");
+    array_push($errores, "*The username field is empty.");
   } elseif (strlen($name) < 8) {
-    array_push ($errores, "*El nombre de usuario debe tener al menos 8 caracteres.");
+    array_push ($errores, "*The username must have at least 8 characters.");
     }
 
 // email
   if (empty($email)) {
-    array_push($errores, "*El campo de mail está vacío.");
+    array_push($errores, "*The email field is empty.");
     } elseif (!filter_var($email , FILTER_VALIDATE_EMAIL)){
-    array_push ($errores, "*El email es inválido.");
+    array_push ($errores, "*The email is invalid. Please try again.");
     }
 
 // Message
   if (empty($message)) {
-    array_push($errores, "*El campo de mensaje está vacío.");
+    array_push($errores, "*The message field is empty.");
     }
 
 

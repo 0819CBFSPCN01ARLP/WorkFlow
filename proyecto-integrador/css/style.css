@@ -253,18 +253,20 @@ aside .fas{
 
 
 /* LOGIN */
-.login-form,
-.register-form {
+.form {
   position: relative;
   z-index: 1;
   background: #FFFFFF;
   margin: 0 auto 100px;
   padding: 45px;
-  text-align: center;
   box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
 }
-.login-form input,
-.register-form input {
+
+.form label{
+    font-size:14px;
+}
+.form input:not([type="checkbox"]),
+.form textarea{
   outline: 0;
   background: #f2f2f2;
   width: 100%;
@@ -274,8 +276,7 @@ aside .fas{
   box-sizing: border-box;
   font-size: 14px;
 }
-.login-form button,
-.register-form button {
+.form button {
   text-transform: uppercase;
   outline: 0;
   background: #604bab;
@@ -288,22 +289,17 @@ aside .fas{
   transition: all 0.3 ease;
   cursor: pointer;
 }
-.login-form button:hover,
-.login-form button:active,
-.login-form button:focus,
-.register-form button:hover,
-.register-form button:active,
-.register-form button:focus {
+.form button:hover,
+.form button:active,
+.form button:focus{
   background: #604bab;
 }
-.login-form .message,
-.register-form .message {
+.form .message {
   margin: 15px 0 0;
   color: #b3b3b3;
   font-size: 12px;
 }
-.login-form .message a,
-.register-form .message a {
+.form .message a {
   color: #604bab;
   text-decoration: none;
 }

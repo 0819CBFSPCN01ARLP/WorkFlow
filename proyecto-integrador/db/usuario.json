@@ -6,5 +6,21 @@
         "password": "$2y$10$gIjG1RAIjv9W.lnd9.sub.eyUVDOkYXkaOQl87XYZqWzoQyNzY7A6",
         "password_verify": "$2y$10$crxALqy3Gn2y5v5a5\/dhMemBxCS0Y9ineCy5TBMN4gpapPrEu1orS",
         "profile_img": "profile-Homero Simspon.jpg"
+    },
+    {
+        "id": 1,
+        "name": "Moeee123",
+        "email": "moe@moe.com",
+        "password": "$2y$10$Ki75kFVqmpy4s6OiUhhDquExK5SO9DSTdeRDxpdB55TPRZzc7arzu",
+        "password_verify": "$2y$10$\/x4WCI1CZzXj9.qmR4ynWO6Kanb1cy\/bVLqpWZfumUCWdNRT3MU.W",
+        "profile_img": "profile-Moeee123.jpg"
+    },
+    {
+        "id": 2,
+        "name": "Otro user",
+        "email": "otrouser@otrouser.com",
+        "password": "$2y$10$K\/muanUqFsi9asxRMqD1yuLlqgaMCHYgH.pLwkL3Yb7XWvjj.XihO",
+        "password_verify": "$2y$10$dlZXG17iVnG5TOQoYwXHIOGqCW9rMPFwAUS2BKt9FqZaFMCn4c80a",
+        "profile_img": "profile-Otro user.jpg"
     }
 ]
