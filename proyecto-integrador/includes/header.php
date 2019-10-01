@@ -29,7 +29,8 @@
 						  <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
 						    <a class="dropdown-item" href="about.php">About Us </a>
 						    <a class="dropdown-item" href="faqs.php">Faqs</a>
-								<a class="dropdown-item" href="login.php">Login/Logout</a>
+								<a class="dropdown-item" href="login.php">Login</a>
+								<!--<a class="dropdown-item" href="logout.php">Logout</a>-->
 						  </div>
 					</div>
 						<a class="navbar-brand name-mob" href="index.php">W<strong>F</strong></a>
