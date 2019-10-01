@@ -72,7 +72,7 @@ if (count($_POST)) {
         ];
 
         //Guardar info en cookies
-        if ($_POST["rememberme"]){
+        if(isset($_POST['rememberme']) && $_POST['rememberme']){
            setcookie("name", $name, time() + 365 * 24 * 60 * 60);
         }
 

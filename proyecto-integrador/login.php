@@ -36,21 +36,24 @@ if (count($_POST))  {
 	    }
 
 	    //Guardar info en cookies
-		if ( $_POST["rememberme"]){
+		if(isset($_POST['rememberme']) && $_POST['rememberme']){
 			 setcookie("name", $name, time() + 365 * 24 * 60 * 60);
 		}
 
+		$userFound = false;
 	    foreach ($arrayUsuarios as $usuario) {
 	      if ($_POST["name"] == $usuario["name"]){
 	        if (password_verify($_POST["password"], $usuario["password"])){
-	          $_SESSION["usuarioLogueado"] = $usuario;
-	          header("Location: index.php");
+	        	$userFound = true;
+	          	$_SESSION["usuarioLogueado"] = $usuario;
+	          	header("Location: index.php");
 
-	        }else{
-	          array_push ($errores, "*There was an error, please try again.");
-			  break;
 	        }
 	      }
+	    }
+
+	    if (!$userFound){
+	    	array_push ($errores, "*There was an error, please try again.");
 	    }
 
 	  }
