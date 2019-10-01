@@ -7,10 +7,10 @@ if (isset($_SESSION["usuarioLogueado"])){
 }
 
 $errores=array();
-$name = null;
 
 if (count($_POST))  {
-	
+
+	$name = null;
 	$name = trim($_POST["name"]);
 	$password = $_POST["password"];
 
@@ -24,12 +24,6 @@ if (count($_POST))  {
 		array_push($errores, "*The password field is empty.");
 	}
 
-	//Guardar info en cookies
-	if ( $_POST["rememberme"] == "1"){
-		setcookie("name", $name, time() + 365 * 24 * 60 * 60);
-		setcookie("password", $password, time() + 365 * 24 * 60 * 60);
-	}
-
 	// Mostrar errores:
 	if (!$errores){
 		$pathUsuarios = "db/usuario.json";
@@ -41,17 +35,24 @@ if (count($_POST))  {
 	      $arrayUsuarios = json_decode($usuarioJson,true);
 	    }
 
+	    //Guardar info en cookies
+		if ( $_POST["rememberme"]){
+			 setcookie("name", $name, time() + 365 * 24 * 60 * 60);
+		}
+
 	    foreach ($arrayUsuarios as $usuario) {
 	      if ($_POST["name"] == $usuario["name"]){
 	        if (password_verify($_POST["password"], $usuario["password"])){
 	          $_SESSION["usuarioLogueado"] = $usuario;
 	          header("Location: index.php");
+
 	        }else{
 	          array_push ($errores, "*There was an error, please try again.");
 			  break;
 	        }
 	      }
 	    }
+
 	  }
 }
 
@@ -84,13 +85,11 @@ if (count($_POST))  {
 								value="<?php if (isset($_COOKIE['name'])) {
 											echo $_COOKIE['name'];
 										} elseif (isset($name)){
-											echo $name;
+											 echo $name;
 										}
-
 										?>"
 									>
-								<input type="password" placeholder="Password" name="password"
-								value="<?php if (isset($_COOKIE['password'])) { echo $_COOKIE['password']; } ?>">
+								<input type="password" placeholder="Password" name="password" value="">
 								<div class="form-check">
 				                  <input type="checkbox" class="form-check-input" id="cbox1" name="rememberme" value="1">
 				                  <label class="form-check-label" for="cbox1">Remember me</label>

@@ -52,7 +52,7 @@ if (count($_POST)) {
 
   // Mostrar errores:
   if (!$errores){
-    
+
         $pathUsuarios = "db/usuario.json";
         $arrayUsuarios= [];
 
@@ -72,9 +72,8 @@ if (count($_POST)) {
         ];
 
         //Guardar info en cookies
-        if ($_POST["rememberme"]== "1"){
+        if ($_POST["rememberme"]){
            setcookie("name", $name, time() + 365 * 24 * 60 * 60);
-           setcookie("password", $password, time() + 365 * 24 * 60 * 60);
         }
 
         // Profile image
@@ -136,7 +135,7 @@ if (count($_POST)) {
                 <input id="pi" type="file" name="profile_img">
 
                 <div class="form-check">
-                  <input type="checkbox" class="form-check-input" id="cbox1" name="rememberme" value="1">
+                  <input type="checkbox" class="form-check-input" id="cbox1" name="rememberme" value="0">
                   <label class="form-check-label" for="cbox1">Remember me</label>
                 </div>
 								<button class=" contact-but btn btn-outline-info btn-block z-depth-0 my-4 waves-effect" name="submit" type="submit">REGISTER</button>
