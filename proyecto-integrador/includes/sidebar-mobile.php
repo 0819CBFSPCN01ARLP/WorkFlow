@@ -10,9 +10,6 @@
     <li class="nav-item">
       <a class="nav-link" id="pills-contact-tab" data-toggle="pill" href="#pills-hashtags" role="tab" aria-selected="false"><i class="fas fa-hashtag fa-2x mr-2" aria-hidden="true"></i></a>
     </li>
-    <li class="nav-item">
-      <a class="nav-link" id="pills-contact-tab" data-toggle="pill" href="#pills-news" role="tab" aria-selected="false"><i class="fas fa-newspaper fa-2x mr-2" aria-hidden="true"></i></a>
-    </li>
   </ul>
   <!-- END: TABSS -->
 
@@ -69,17 +66,6 @@
     </div>
     <!-- END: CONTENT-TAB-HASHTAGS -->
 
-    <div class="tab-pane fade" id="pills-news" role="tabpanel">
-      <a href="" class="news p-3 mb-3">
-        <h3>Sample Title</h3>
-        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore ...</p>
-      </a>
-      <a href="" class="news p-3 mb-3">
-        <h3>Sample Title</h3>
-        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore ...</p>
-      </a>
-    </div>
-    <!-- END: CONTENT-TAB-NEWS -->
 
   </div>
   <!-- END: CONTENT-TABS -->

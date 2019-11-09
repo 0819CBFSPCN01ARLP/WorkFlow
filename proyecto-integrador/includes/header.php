@@ -1,3 +1,22 @@
+<?php
+ 	require_once("pdo.php");
+
+	$consulta = $db->prepare("SELECT * FROM user");
+	$consulta->execute();
+	$usuarios = $consulta->fetchAll(PDO::FETCH_ASSOC);
+	if (!empty($_GET["id"])){
+		$getUsuarioId = $_GET["id"];
+    foreach ($usuarios as $usuario){
+      if($getUsuarioId == $usuario["id"]){
+        $username = $usuario["name"];
+        $email = $usuario["email"];
+      }
+    }
+	}
+
+
+?>
+
 <!DOCTYPE html>
 <html>
 	<head>
@@ -44,14 +63,15 @@
 					<div class="col-7 col-lg-4 py-3 head-options">
 						<ul>
 							<li class="search-mob"><a href=""><i class="fas fa-search fa-2x"></i></a></li>
-							<li><a href=""><i class="fas fa-bell fa-2x"></i></a></li>
-							<li class="inbox-desk"><a href=""><i class="fas fa-envelope fa-2x"></i></a></li>
 							<!--<li><a href=""><i class="fas fa-sign-in-alt fa-2x"></i></a></li>-->
 							<li class="user-logo">
-								<a href="profile.php">
-									<img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSp3gZ8rLGb-NOO4VDjfiM-RBq0dkMFx2rX0-wnNje_L1Gq06qi" alt="">
-									<span>Ross Geller</span>
-								</a>
+								<?php if (!empty($getUsuarioId)) : ?>
+									<a href="profile.php?id=<?php echo $getUsuarioId ?>">
+										<img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSp3gZ8rLGb-NOO4VDjfiM-RBq0dkMFx2rX0-wnNje_L1Gq06qi" alt="">
+										<span><?php echo $username; ?></span>
+									</a>
+								<?php endif; ?>
+
 							</li>
 						</ul>
 					</div>
@@ -59,7 +79,10 @@
 	<!-- navbar bottom -->
 				<nav class="navbar navbar-bot nav justify-content-center fixed-bottom navbar-light bg-color">
 	  				<ul>
-	  					<li><a href="profile.php" class="nav-item nav-link active"><i class="fas fa-user fa-2x"></i></a></li>
+	  					<li>
+                <?php if (!empty($getUsuarioId)) : ?>
+                  <a href="profile.php?id=<?php echo $getUsuarioId ?>" class="nav-item nav-link active"><i class="fas fa-user fa-2x"></i></a></li>
+                <?php endif; ?>
 							<li class="mar"><a href="" class="nav-item nav-link active"><i class="fas fa-envelope fa-2x"></i></a></li>
 						</ul>
 				</nav>

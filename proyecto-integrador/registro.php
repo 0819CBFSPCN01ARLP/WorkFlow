@@ -1,4 +1,5 @@
 <?php
+require_once('includes/header.php');
 $errores=array();
 $name = null;
 
@@ -6,10 +7,16 @@ if (count($_POST)) {
 
 	// Variables para persisitir la info:
 	$name = trim($_POST["name"]);
+	$lastname = trim($_POST["last_name"]);
 	$email = trim($_POST["email"]);
 	$password = $_POST["password"];
 	$password_verify = $_POST["password_verify"];
+	if(isset($_POST['rememberme']) && $_POST['rememberme']){
+		$rememberme =  $_POST['rememberme'];
+	}
+
 	$errores=array();
+
 
   // Name
   if (empty($name)) {
@@ -19,6 +26,12 @@ if (count($_POST)) {
         }
 
   // email
+	foreach ($usuarios as $usuario){
+			if ($email == $usuario["email"]){
+					array_push($errores, "*This email address is already in use. Please use another one.");
+			}
+	}
+
   if (empty($email)) {
     array_push($errores, "*The email field is empty.");
       } elseif (!filter_var($email , FILTER_VALIDATE_EMAIL)){
@@ -52,8 +65,22 @@ if (count($_POST)) {
 
   // Mostrar errores:
   if (!$errores){
+				//Guardar info en cookies
+				if(isset($_POST['rememberme']) && $_POST['rememberme']){
+					 setcookie("name", $name, time() + 365 * 24 * 60 * 60);
+				}
 
-        $pathUsuarios = "db/usuario.json";
+				$password =  password_hash($_POST["password"] , PASSWORD_DEFAULT);
+				$password_verify =  password_hash($_POST["password"] , PASSWORD_DEFAULT);
+
+				$insertar = $db->prepare("INSERT into user
+				values (null, '$name', '$lastname', '$email', '$password', '$password_verify', '$rememberme', null, NOW(), null )");
+				$insertar -> execute();
+
+				session_start();
+        header("Location: registro-success.php");
+
+        /*$pathUsuarios = "db/usuario.json";
         $arrayUsuarios= [];
 
         if(file_exists($pathUsuarios)){
@@ -70,11 +97,6 @@ if (count($_POST)) {
           "password"=> password_hash($_POST["password"] , PASSWORD_DEFAULT),
           "password_verify" => password_hash($_POST["password_verify"] , PASSWORD_DEFAULT)
         ];
-
-        //Guardar info en cookies
-        if(isset($_POST['rememberme']) && $_POST['rememberme']){
-           setcookie("name", $name, time() + 365 * 24 * 60 * 60);
-        }
 
         // Profile image
         if ($_FILES && $_FILES["profile_img"]["error"] == 0){
@@ -97,8 +119,7 @@ if (count($_POST)) {
         // GUARDAR EL USUARIO A UN ARCHIVO
         file_put_contents("db/usuario.json", $usuarioJSON);
 
-        session_start();
-        header("Location: registro-success.php");
+        */
 
       }
   }
@@ -107,8 +128,8 @@ if (count($_POST)) {
 ?>
 
 <?php require_once('includes/header.php'); ?>
-
 	<main class="container main">
+
 			<!-- START:MAIN-CONTENT-COLUMN -->
 			<section class="col-12 col-sm-12 col-lg-12">
 
@@ -126,13 +147,14 @@ if (count($_POST)) {
                   </div>
               <?php endif; ?>
 							<form class="form register-form" action="registro.php" method="post" enctype="multipart/form-data">
-								<input type="text" placeholder="Username" name="name" value="<?php if(isset($name)) echo $name ?>">
+								<input type="text" placeholder="Name" name="name" value="<?php if(isset($name)) echo $name ?>">
+								<input type="text" placeholder="Last name" name="last_name" value="<?php if(isset($lastname)) echo $lastname ?>">
                 <input type="text" placeholder="Email Address" name="email" value="<?php if(isset($email)) echo $email ?>">
                 <input type="password" placeholder="Password" name="password">
 								<input type="password" placeholder="Password Verify" name="password_verify">
-                
-                <label for="pi">Add profile picture</label>
-                <input id="pi" type="file" name="profile_img">
+
+                <!-- <label for="pi">Add profile picture</label>
+                <input id="pi" type="file" name="profile_img"> -->
 
                 <div class="form-check">
                   <input type="checkbox" class="form-check-input" id="cbox1" name="rememberme" value="0">

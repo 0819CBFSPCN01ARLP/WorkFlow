@@ -1,22 +1,26 @@
 <?php
-
+require_once('includes/header.php');
 session_start();
 
 if (isset($_SESSION["usuarioLogueado"])){
-	header("Location: index.php");
+	foreach ($usuarios as $usuario) {
+		$usuarioId = $usuario["id"];
+		header("Location: index.php" . "?id=" . $usuarioId );
+	}
+
 }
 
 $errores=array();
 
 if (count($_POST))  {
 
-	$name = null;
-	$name = trim($_POST["name"]);
+	$email = null;
+	$email = trim($_POST["email"]);
 	$password = $_POST["password"];
 
 	// Name
-	if (empty($name)) {
-		array_push($errores, "*The username field is empty.");
+	if (empty($email)) {
+		array_push($errores, "*The email field is empty.");
 	}
 
 	// Password
@@ -26,42 +30,54 @@ if (count($_POST))  {
 
 	// Mostrar errores:
 	if (!$errores){
-		$pathUsuarios = "db/usuario.json";
-	    $arrayUsuarios= [];
-
-	    if(file_exists($pathUsuarios)){
-	      $usuarioJson = file_get_contents($pathUsuarios);
-
-	      $arrayUsuarios = json_decode($usuarioJson,true);
-	    }
+		// $pathUsuarios = "db/usuario.json";
+	  //   $arrayUsuarios= [];
+		//
+	  //   if(file_exists($pathUsuarios)){
+	  //     $usuarioJson = file_get_contents($pathUsuarios);
+		//
+	  //     $arrayUsuarios = json_decode($usuarioJson,true);
+	  //   }
 
 	    //Guardar info en cookies
 		if(isset($_POST['rememberme']) && $_POST['rememberme']){
-			 setcookie("name", $name, time() + 365 * 24 * 60 * 60);
+			 setcookie("email", $email, time() + 365 * 24 * 60 * 60);
 		}
 
+		// $userFound = false;
+	  //   foreach ($arrayUsuarios as $usuario) {
+	  //     if ($_POST["name"] == $usuario["name"]){
+	  //       if (password_verify($_POST["password"], $usuario["password"])){
+	  //       	$userFound = true;
+	  //         	$_SESSION["usuarioLogueado"] = $usuario;
+	  //         	header("Location: index.php");
+		//
+	  //       }
+	  //     }
+	  //   }
+		//
+	  //   if (!$userFound){
+	  //   	array_push ($errores, "*There was an error, please try again.");
+	  //   }
 		$userFound = false;
-	    foreach ($arrayUsuarios as $usuario) {
-	      if ($_POST["name"] == $usuario["name"]){
-	        if (password_verify($_POST["password"], $usuario["password"])){
-	        	$userFound = true;
-	          	$_SESSION["usuarioLogueado"] = $usuario;
-	          	header("Location: index.php");
+		foreach ($usuarios as $usuario) {
+			if ($_POST["email"] == $usuario["email"]){
+		    if (password_verify($_POST["password"], $usuario["password"])){
+		       $userFound = true;
+		       $_SESSION["usuarioLogueado"] = $usuario;
+					 $usuarioId = $usuario["id"];
+		       header("Location: index.php" . "?id=" . $usuarioId );
+		     }
+		  	}
+			}
 
-	        }
-	      }
-	    }
-
-	    if (!$userFound){
-	    	array_push ($errores, "*There was an error, please try again.");
-	    }
-
+			if (!$userFound){
+		   	array_push ($errores, "*There was an error, please try again.");
+		   }
 	  }
 }
 
 ?>
-
-<?php require_once('includes/header.php'); ?>
 
 	<main class="container main">
 
@@ -84,14 +100,12 @@ if (count($_POST))  {
 			                <?php endif; ?>
 
 							<form class="form login-form" action="login.php" method="post">
-								<input type="text" placeholder="Username" name="name"
-								value="<?php if (isset($_COOKIE['name'])) {
-											echo $_COOKIE['name'];
-										} elseif (isset($name)){
-											 echo $name;
+								<input type="text" placeholder="Email Address" name="email" value="<?php if (isset($_COOKIE['email'])) {
+											echo $_COOKIE['email'];
+										} elseif (isset($email)){
+											 echo $email;
 										}
-										?>"
-									>
+										?>">
 								<input type="password" placeholder="Password" name="password" value="">
 								<div class="form-check">
 				                  <input type="checkbox" class="form-check-input" id="cbox1" name="rememberme" value="1">

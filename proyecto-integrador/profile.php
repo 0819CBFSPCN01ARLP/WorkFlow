@@ -1,4 +1,17 @@
-<?php require_once('includes/header.php'); ?>
+<?php
+require_once('includes/header.php');
+if (count($_POST)) {
+	$post = $_POST["post"];
+	$insertar = $db->prepare("INSERT into post
+	values (null, '$post', null, null, $getUsuarioId, NOW() )");
+	$insertar -> execute();
+}
+
+$consulta_post = $db->prepare("SELECT * FROM post ORDER BY create_at DESC");
+$consulta_post->execute();
+$posteos = $consulta_post->fetchAll(PDO::FETCH_ASSOC);
+
+?>
 
 	<main class="container main">
 		<div class="row">
@@ -12,7 +25,7 @@
 								<figure class="col-2 col-sm-2 col-lg-2 user-logo">
 									<img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSp3gZ8rLGb-NOO4VDjfiM-RBq0dkMFx2rX0-wnNje_L1Gq06qi" alt="">
 								</figure>
-								<p>Ross Geller</p>
+								<p></p>
 							</div>
 
 					</div>
@@ -46,7 +59,7 @@
 						</div>
 						<div class="col-10 col-sm-10 col-lg-10 content-box">
 							<ul>
-								<li><strong>Email:</strong> <a href="#">mail@workflow.com</a></li>
+								<li><strong>Email:</strong> <a href="mailto:<?php echo $email; ?>"><?php echo $email; ?></a></li>
 								<li><strong>Telefono:</strong> 123456</li>
 								<li><strong>Oficina:</strong> La Plata</li>
 								<li><strong>Linkedin:</strong> /rossgeller</li>
@@ -66,9 +79,13 @@
 				<section class="user-comment p-3 mb-3 bg rounded-border">
 					<div class="row">
 						<div class="user-comment-row user-comment-row-no-arrow">
-							<p><strong>Hi Ross!</strong></p>
-							<p> What's going on?</p>
-							<a class="user-comment-image" href="#"><i class="fas fa-camera fa-2x"></i></a>
+							<form class="form--post" action="profile.php?id=<?php echo $getUsuarioId ?>" method="post">
+									<p><strong>Hi <?php echo $username; ?>!</strong></p>
+									<textarea placeholder="What's going on?" name="post"></textarea>
+									<a class="user-comment-image" href="#"><i class="fas fa-camera fa-2x"></i></a>
+									<button type="submit" name="submit">Submit</button>
+							</form>
+
 						</div>
 					</div>
 				</section><!-- END:ARTICLE -->
@@ -76,56 +93,37 @@
 				<!-- START:ARTICLE -->
 				<section class="others-post p-3 mb-3">
 					<div class="row">
-						<article class="bg rounded-border" >
-							<!-- START: USERS-COMMENTS -->
-							<div class="col-12 col-sm-12 col-lg-12 user-info">
-								<a href="#" class="user-logo mr-3">
-									<img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSp3gZ8rLGb-NOO4VDjfiM-RBq0dkMFx2rX0-wnNje_L1Gq06qi" alt="">
-									<span>Ross Geller</span>
-								</a>
-							</div>
-							<div class="col-12 col-sm-12 col-lg-12 user-comment">
-								<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-								<img src="https://usabilitygeek.com/wp-content/uploads/2017/09/ux-before-ui-main.jpg" alt="">
-							</div>
-							<!-- END: USERS-COMMENTS -->
+						<?php foreach ($posteos as $post) : ?>
+								<?php if ($post["user_id"] == $getUsuarioId ) : ?>
+									<article class="bg rounded-border" >
+										<!-- START: USERS-COMMENTS -->
+										<div class="col-12 col-sm-12 col-lg-12 user-info">
+											<a href="#" class="user-logo mr-3">
+												<img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSp3gZ8rLGb-NOO4VDjfiM-RBq0dkMFx2rX0-wnNje_L1Gq06qi" alt="">
+												<span><?php echo $username; ?></span>
+											</a>
+										</div>
+										<div class="col-12 col-sm-12 col-lg-12 user-comment">
+											<p><?php echo $post["text"]; ?></p>
+											<img src="https://usabilitygeek.com/wp-content/uploads/2017/09/ux-before-ui-main.jpg" alt="">
+										</div>
+										<!-- END: USERS-COMMENTS -->
 
-							<!-- START: FEEDBACK-ACTIONS -->
-							<div class="col-12 col-sm-12 col-lg-12 p-3 feedback-actions">
-								<ul>
-									<li><a href="#"><i class="far fa-thumbs-up fa-2x"></i></a></li>
-									<li>7 likes</li>
-									<li class="ml-4"><a href="#"><i class="far fa-comment-dots fa-2x"></i></a></li>
-									<li>10 comments</li>
-								</ul>
-							</div>
-							<!-- START: FEEDBACK-ACTIONS -->
-						</article>
-						<article class="bg rounded-border" >
-							<!-- START: USERS-COMMENTS -->
-							<div class="col-12 col-sm-12 col-lg-12 user-info">
-								<a href="#" class="user-logo mr-3">
-									<img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSp3gZ8rLGb-NOO4VDjfiM-RBq0dkMFx2rX0-wnNje_L1Gq06qi" alt="">
-									<span>Ross Geller</span>
-								</a>
-							</div>
-							<div class="col-12 col-sm-12 col-lg-12 user-comment">
-								<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-								<img src="https://careerfoundry.com/en/blog/uploads/what-does-a-ux-designer-do-header-image.jpg" alt="">
-							</div>
-							<!-- END: USERS-COMMENTS -->
+										<!-- START: FEEDBACK-ACTIONS -->
+										<div class="col-12 col-sm-12 col-lg-12 p-3 feedback-actions">
+											<ul>
 
-							<!-- START: FEEDBACK-ACTIONS -->
-							<div class="col-12 col-sm-12 col-lg-12 p-3 feedback-actions">
-								<ul>
-									<li><a href="#"><i class="far fa-thumbs-up fa-2x"></i></a></li>
-									<li>7 likes</li>
-									<li class="ml-4"><a href="#"><i class="far fa-comment-dots fa-2x"></i></a></li>
-									<li>10 comments</li>
-								</ul>
-							</div>
-							<!-- START: FEEDBACK-ACTIONS -->
-						</article>
+												<li><a href="#"><i class="far fa-thumbs-up fa-2x"></i></a></li>
+												<li>7 likes</li>
+												<li class="ml-4"><a href="#"><i class="far fa-comment-dots fa-2x"></i></a></li>
+												<li>10 comments</li>
+												<li><a href="">Delete</a></li>
+											</ul>
+										</div>
+										<!-- START: FEEDBACK-ACTIONS -->
+									</article>
+							<?php endif; ?>
+						<?php endforeach; ?>
 
 					</div>
 				</section><!-- END:ARTICLE -->

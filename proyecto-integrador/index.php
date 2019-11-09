@@ -1,4 +1,16 @@
-<?php require_once('includes/header.php'); ?>
+<?php require_once('includes/header.php');
+if (count($_POST)) {
+	$post = $_POST["post"];
+	$insertar = $db->prepare("INSERT into post
+	values (null, '$post', null, null, $getUsuarioId, NOW() )");
+	$insertar -> execute();
+}
+
+$consulta_post = $db->prepare("SELECT * FROM post ORDER BY create_at DESC");
+$consulta_post->execute();
+$posteos = $consulta_post->fetchAll(PDO::FETCH_ASSOC);
+
+?>
 
 	<main class="container main">
 		<div class="row">
@@ -18,9 +30,12 @@
 						</figure>
 						<div class="col-10 col-sm-10 col-lg-11 user-comment">
 							<div class="user-comment-row">
-								<p><strong>Hi Ross!</strong></p>
-								<p> What's going on?</p>
-								<a class="user-comment-image" href="#"><i class="fas fa-camera fa-2x"></i></a>
+								<form class="form--post" action="index.php?id=<?php echo $getUsuarioId ?>" method="post">
+										<p><strong>Hi <?php echo $username; ?>!</strong></p>
+										<textarea placeholder="What's going on?" name="post"></textarea>
+										<a class="user-comment-image" href="#"><i class="fas fa-camera fa-2x"></i></a>
+										<button type="submit" name="submit">Submit</button>
+								</form>
 							</div>
 						</div>
 					</div>
@@ -29,57 +44,33 @@
 				<!-- START:SECTION -->
 				<section class="others-post p-3 mb-3">
 					<div class="row">
-						<article class="bg rounded-border">
-							<!-- START: USERS-COMMENTS -->
-							<div class="col-12 col-sm-12 col-lg-12 user-info">
-								<a href="#" class="user-logo mr-3">
-									<img src="https://ae01.alicdn.com/kf/HTB1Pi8ScpGWBuNjy0Fbq6z4sXXaX/ibboll-Luxury-Optical-Glasses-2018-Classic-Eye-Glasses-Frames-for-Men-Fashion-Clear-Eyeglasses-Male-Round.jpg" alt="">
-									<span>Lean Taylor</span>
-								</a>
-							</div>
-							<div class="col-12 col-sm-12 col-lg-12 user-comment">
-								<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-								<img src="https://mediaonemarketing.com.sg/wp-content/uploads/2019/07/think-like-UX-designer-1080x600.jpg" alt="">
-							</div>
-							<!-- END: USERS-COMMENTS -->
+						<?php foreach ($posteos as $post) : ?>
+							<article class="bg rounded-border">
+								<!-- START: USERS-COMMENTS -->
+								<div class="col-12 col-sm-12 col-lg-12 user-info">
+									<a href="#" class="user-logo mr-3">
+										<img src="https://ae01.alicdn.com/kf/HTB1Pi8ScpGWBuNjy0Fbq6z4sXXaX/ibboll-Luxury-Optical-Glasses-2018-Classic-Eye-Glasses-Frames-for-Men-Fashion-Clear-Eyeglasses-Male-Round.jpg" alt="">
+										<span>Lean Taylor</span>
+									</a>
+								</div>
+								<div class="col-12 col-sm-12 col-lg-12 user-comment">
+									<p><?php echo $post["text"]; ?></p>
+									<img src="https://mediaonemarketing.com.sg/wp-content/uploads/2019/07/think-like-UX-designer-1080x600.jpg" alt="">
+								</div>
+								<!-- END: USERS-COMMENTS -->
 
-							<!-- START: FEEDBACK-ACTIONS -->
-							<div class="col-12 col-sm-12 col-lg-12 p-3 feedback-actions">
-								<ul>
-									<li><a href="#"><i class="far fa-thumbs-up fa-2x"></i></a></li>
-									<li>7 likes</li>
-									<li class="ml-4"><a href="#"><i class="far fa-comment-dots fa-2x"></i></a></li>
-									<li>10 comments</li>
-								</ul>
-							</div>
-							<!-- START: FEEDBACK-ACTIONS -->
-						</article>
-
-						<article class="bg rounded-border">
-							<!-- START: USERS-COMMENTS -->
-							<div class="col-12 col-sm-12 col-lg-12 user-info">
-								<a href="#" class="user-logo mr-3">
-									<img src="https://www.indiewire.com/wp-content/uploads/2019/06/Ann-Sarnoff-Headshot.png?w=780" alt="">
-									<span>Susan Lay</span>
-								</a>
-							</div>
-							<div class="col-12 col-sm-12 col-lg-12 user-comment">
-								<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-								<img src="https://cmsresources.elempleo.com/sites/default/files/styles/large/public/fotos/noticias/reuniones_efectivas.jpg?itok=JW-47IsL" alt="">
-							</div>
-							<!-- END: USERS-COMMENTS -->
-
-							<!-- START: FEEDBACK-ACTIONS -->
-							<div class="col-12 col-sm-12 col-lg-12 p-3 feedback-actions">
-								<ul>
-									<li><a href="#"><i class="far fa-thumbs-up fa-2x"></i></a></li>
-									<li>7 likes</li>
-									<li class="ml-4"><a href="#"><i class="far fa-comment-dots fa-2x"></i></a></li>
-									<li>10 comments</li>
-								</ul>
-							</div>
-							<!-- START: FEEDBACK-ACTIONS -->
-						</article>
+								<!-- START: FEEDBACK-ACTIONS -->
+								<div class="col-12 col-sm-12 col-lg-12 p-3 feedback-actions">
+									<ul>
+										<li><a href="#"><i class="far fa-thumbs-up fa-2x"></i></a></li>
+										<li>7 likes</li>
+										<li class="ml-4"><a href="#"><i class="far fa-comment-dots fa-2x"></i></a></li>
+										<li>10 comments</li>
+									</ul>
+								</div>
+								<!-- START: FEEDBACK-ACTIONS -->
+							</article>
+					<?php endforeach; ?>
 					</div>
 				</section><!-- END:MAIN-CONTENT-COLUMN -->
 			</section>

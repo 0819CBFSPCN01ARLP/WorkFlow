@@ -73,23 +73,4 @@
     </div>
   </article><!-- END:HASHTAG-BOX -->
 
-  <!-- START:NEWS-BOX -->
-  <article class="user-post p-3 mb-3 news bg rounded-border">
-    <div class="row">
-      <div class="col-12 col-sm-12 col-lg-12 pt-2 ico-box">
-        <h3><i class="fas fa-newspaper fa-2x mr-2"></i> News</h3>
-      </div>
-      <div class="col-12 col-sm-12 col-lg-12 content-box">
-        <a href="" class="p-3 mb-3">
-          <h3>Sample Title</h3>
-          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore ...</p>
-        </a>
-        <a href="" class="p-3 mb-3">
-          <h3>Sample Title</h3>
-          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore ...</p>
-        </a>
-      </div>
-    </div>
-  </article><!-- END:NEWS-BOX -->
-
 </aside>
