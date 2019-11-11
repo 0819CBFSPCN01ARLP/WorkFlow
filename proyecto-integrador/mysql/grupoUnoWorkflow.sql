@@ -1,5 +1,5 @@
-CREATE DATABASE grupo_uno_workflow;
-USE grupo_uno_workflow;
+CREATE DATABASE grupoUnoWorkflow;
+USE grupoUnoWorkflow;
 
 CREATE TABLE post (
 	id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
@@ -46,12 +46,13 @@ CREATE TABLE user (
     name VARCHAR(30) NOT NULL,
     last_name VARCHAR(30) NOT NULL,
 	email VARCHAR(100) NOT NULL,
-    password VARCHAR(10),
-    password_verify VARCHAR(10),
+    password VARCHAR(255),
+    password_verify VARCHAR(255),
 	remember_me BOOLEAN,
 	administrator BOOLEAN,
     create_at DATE NOT NULL,
 	team_id INT(10) UNSIGNED DEFAULT NULL
 );
 
-DESCRIBE user;
+select * from user;
+select * from post;
