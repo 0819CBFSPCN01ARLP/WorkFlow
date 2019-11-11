@@ -1,16 +1,11 @@
 <?php require_once('includes/header.php');
-if (count($_POST)) {
-	$post = $_POST["post"];
-	$insertar = $db->prepare("INSERT into post
-	values (null, '$post', null, null, $getUsuarioId, NOW() )");
-	$insertar -> execute();
-}
 
 $consulta_post = $db->prepare("SELECT * FROM post ORDER BY create_at DESC");
 $consulta_post->execute();
 $posteos = $consulta_post->fetchAll(PDO::FETCH_ASSOC);
 
 ?>
+<?php if ( isset($_SESSION["usuarioLogueado"]) ) { ?>
 
 	<main class="container main">
 		<div class="row">
@@ -30,8 +25,8 @@ $posteos = $consulta_post->fetchAll(PDO::FETCH_ASSOC);
 						</figure>
 						<div class="col-10 col-sm-10 col-lg-11 user-comment">
 							<div class="user-comment-row">
-								<form class="form--post" action="index.php?id=<?php echo $getUsuarioId ?>" method="post">
-										<p><strong>Hi <?php echo $username; ?>!</strong></p>
+								<form class="form--post" action="send-post.php" method="post">
+										<p><strong>Hi <?php echo $userName; ?>!</strong></p>
 										<textarea placeholder="What's going on?" name="post"></textarea>
 										<a class="user-comment-image" href="#"><i class="fas fa-camera fa-2x"></i></a>
 										<button type="submit" name="submit">Submit</button>
@@ -66,6 +61,14 @@ $posteos = $consulta_post->fetchAll(PDO::FETCH_ASSOC);
 										<li>7 likes</li>
 										<li class="ml-4"><a href="#"><i class="far fa-comment-dots fa-2x"></i></a></li>
 										<li>10 comments</li>
+
+										<?php if ($userId == $post["user_id"]) :
+										$postId = $post["id"]; ?>
+										<form class="form--post" action="delete-post.php" method="get">
+											<input type="hidden" value="<?php echo $postId; ?>" name="postId"></input>
+											<button type="submit">Delete</button>
+										</form>
+										<?php endif;?>
 									</ul>
 								</div>
 								<!-- START: FEEDBACK-ACTIONS -->
@@ -81,6 +84,8 @@ $posteos = $consulta_post->fetchAll(PDO::FETCH_ASSOC);
 
 		</div>
 	</main>
-
+	<?php } else { 
+		header("Location: login.php");
+	} ?>
 	</body>
 </html>

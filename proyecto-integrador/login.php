@@ -1,13 +1,8 @@
 <?php
 require_once('includes/header.php');
-session_start();
 
 if (isset($_SESSION["usuarioLogueado"])){
-	foreach ($usuarios as $usuario) {
-		$usuarioId = $usuario["id"];
-		header("Location: index.php" . "?id=" . $usuarioId );
-	}
-
+	header("Location: index.php");
 }
 
 $errores=array();
@@ -62,13 +57,12 @@ if (count($_POST))  {
 		$userFound = false;
 		foreach ($usuarios as $usuario) {
 			if ($_POST["email"] == $usuario["email"]){
-		    if (password_verify($_POST["password"], $usuario["password"])){
-		       $userFound = true;
-		       $_SESSION["usuarioLogueado"] = $usuario;
-					 $usuarioId = $usuario["id"];
-		       header("Location: index.php" . "?id=" . $usuarioId );
-		     }
-		  	}
+			    if (password_verify($_POST["password"], $usuario["password"])){
+			       $userFound = true;
+			       $_SESSION["usuarioLogueado"] = $usuario;
+			       header("Location: index.php");
+			     }
+			  	}
 			}
 
 			if (!$userFound){

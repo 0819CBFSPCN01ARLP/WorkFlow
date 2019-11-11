@@ -51,7 +51,7 @@ if (count($_POST)) {
     }
 
   // Profile image
-  if ($_FILES){
+  /*if ($_FILES){
     if ($_FILES["profile_img"]["error"] != 0) {
       array_push ($errores, "*There was an error uploading the file. Please try again.");
     } else {
@@ -60,7 +60,7 @@ if (count($_POST)) {
         array_push ($errores, "*The image extension must be jpg, jpeg, o png.");
       }
     }
-  }
+  }*/
 
 
   // Mostrar errores:
@@ -73,12 +73,33 @@ if (count($_POST)) {
 				$password =  password_hash($_POST["password"] , PASSWORD_DEFAULT);
 				$password_verify =  password_hash($_POST["password"] , PASSWORD_DEFAULT);
 
-				$insertar = $db->prepare("INSERT into user
-				values (null, '$name', '$lastname', '$email', '$password', '$password_verify', '$rememberme', null, NOW(), null )");
-				$insertar -> execute();
-
+      
+				$insertar = $db->prepare(
+          "INSERT into 
+          user values (
+              null,
+              :name,
+              :lastname,
+              :email,
+              :password,
+              :password_verify,
+              null,
+              null,
+              NOW(),
+              null
+              )"
+        );
+				$insertar->execute([
+              ":name"=>$name, 
+              ":lastname"=>$lastname, 
+              ":email"=>$email, 
+              ":password"=>$password, 
+              "password_verify"=>$password_verify
+          ]);
+        
 				session_start();
         header("Location: registro-success.php");
+        
 
         /*$pathUsuarios = "db/usuario.json";
         $arrayUsuarios= [];
@@ -126,8 +147,7 @@ if (count($_POST)) {
 
 
 ?>
-
-<?php require_once('includes/header.php'); ?>
+<?php if (!isset($_SESSION["usuarioLogueado"]) ) { ?>
 	<main class="container main">
 
 			<!-- START:MAIN-CONTENT-COLUMN -->
@@ -138,6 +158,7 @@ if (count($_POST)) {
 					<div class="row">
 						<div class="col-10 offset-1 col-lg-6 offset-lg-3">
 							<h1 class="mb-5 text-center"><strong>Register</strong></h1>
+
               <?php if (count($_POST) && ($errores)) : ?>
                   <div class="alert alert-danger">
                       <h4><strong>Oops!</strong></h4>
@@ -146,6 +167,7 @@ if (count($_POST)) {
                       <?php endforeach; ?>
                   </div>
               <?php endif; ?>
+
 							<form class="form register-form" action="registro.php" method="post" enctype="multipart/form-data">
 								<input type="text" placeholder="Name" name="name" value="<?php if(isset($name)) echo $name ?>">
 								<input type="text" placeholder="Last name" name="last_name" value="<?php if(isset($lastname)) echo $lastname ?>">
@@ -171,6 +193,8 @@ if (count($_POST)) {
 
 
 	</main>
-
+  <?php } else { 
+    header("Location: index.php");
+  } ?>
 	</body>
 </html>

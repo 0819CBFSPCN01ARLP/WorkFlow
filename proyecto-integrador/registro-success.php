@@ -1,4 +1,8 @@
-<?php require_once('includes/header.php'); ?>
+<?php require_once('includes/header.php'); 
+foreach ($usuarios as $usuario){
+	$_SESSION["usuarioLogueado"] = $usuario;
+}
+?>
 
 	<main class="container main">
 

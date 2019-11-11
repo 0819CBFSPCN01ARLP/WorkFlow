@@ -1,21 +1,14 @@
 <?php
 require_once('includes/header.php');
-if (count($_POST)) {
-	$post = $_POST["post"];
-	$insertar = $db->prepare("INSERT into post
-	values (null, '$post', null, null, $getUsuarioId, NOW() )");
-	$insertar -> execute();
-}
 
 $consulta_post = $db->prepare("SELECT * FROM post ORDER BY create_at DESC");
 $consulta_post->execute();
 $posteos = $consulta_post->fetchAll(PDO::FETCH_ASSOC);
 
 ?>
-
+<?php if ( isset($_SESSION["usuarioLogueado"]) ) { ?>
 	<main class="container main">
 		<div class="row">
-
 			<!-- START: HEADER-USER -->
 			<header class="col-12 col-sm-12 col-lg-12 mb-3">
 				<div class="header-user bg">
@@ -59,7 +52,8 @@ $posteos = $consulta_post->fetchAll(PDO::FETCH_ASSOC);
 						</div>
 						<div class="col-10 col-sm-10 col-lg-10 content-box">
 							<ul>
-								<li><strong>Email:</strong> <a href="mailto:<?php echo $email; ?>"><?php echo $email; ?></a></li>
+								<li><strong>Name:</strong> <?php echo $userName;?> <?php echo $userLastName;?>
+								<li><strong>Email:</strong> <a href="mailto:<?php echo $userMail; ?>"><?php echo $userMail; ?></a></li>
 								<li><strong>Telefono:</strong> 123456</li>
 								<li><strong>Oficina:</strong> La Plata</li>
 								<li><strong>Linkedin:</strong> /rossgeller</li>
@@ -79,11 +73,11 @@ $posteos = $consulta_post->fetchAll(PDO::FETCH_ASSOC);
 				<section class="user-comment p-3 mb-3 bg rounded-border">
 					<div class="row">
 						<div class="user-comment-row user-comment-row-no-arrow">
-							<form class="form--post" action="profile.php?id=<?php echo $getUsuarioId ?>" method="post">
-									<p><strong>Hi <?php echo $username; ?>!</strong></p>
-									<textarea placeholder="What's going on?" name="post"></textarea>
-									<a class="user-comment-image" href="#"><i class="fas fa-camera fa-2x"></i></a>
-									<button type="submit" name="submit">Submit</button>
+							<form class="form--post" action="send-post.php" method="post">
+								<p><strong>Hi <?php echo $userName; ?>!</strong></p>
+								<textarea placeholder="What's going on?" name="post"></textarea>
+								<a class="user-comment-image" href="#"><i class="fas fa-camera fa-2x"></i></a>
+								<button type="submit" name="submit">Submit</button>
 							</form>
 
 						</div>
@@ -94,13 +88,14 @@ $posteos = $consulta_post->fetchAll(PDO::FETCH_ASSOC);
 				<section class="others-post p-3 mb-3">
 					<div class="row">
 						<?php foreach ($posteos as $post) : ?>
-								<?php if ($post["user_id"] == $getUsuarioId ) : ?>
+								<?php if ($post["user_id"] == $userId ) : ?>
+									<?php  $postId = $post["id"]; ?>
 									<article class="bg rounded-border" >
 										<!-- START: USERS-COMMENTS -->
 										<div class="col-12 col-sm-12 col-lg-12 user-info">
 											<a href="#" class="user-logo mr-3">
 												<img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSp3gZ8rLGb-NOO4VDjfiM-RBq0dkMFx2rX0-wnNje_L1Gq06qi" alt="">
-												<span><?php echo $username; ?></span>
+												<span><?php echo $userName; ?></span>
 											</a>
 										</div>
 										<div class="col-12 col-sm-12 col-lg-12 user-comment">
@@ -117,7 +112,11 @@ $posteos = $consulta_post->fetchAll(PDO::FETCH_ASSOC);
 												<li>7 likes</li>
 												<li class="ml-4"><a href="#"><i class="far fa-comment-dots fa-2x"></i></a></li>
 												<li>10 comments</li>
-												<li><a href="">Delete</a></li>
+
+												<form class="form--post" action="delete-post.php" method="get">
+													<input type="hidden" value="<?php echo $postId; ?>" name="postId"></input>
+													<button type="submit">Delete</button>
+												</form>
 											</ul>
 										</div>
 										<!-- START: FEEDBACK-ACTIONS -->
@@ -131,7 +130,10 @@ $posteos = $consulta_post->fetchAll(PDO::FETCH_ASSOC);
 			</section><!-- END:MAIN-CONTENT-COLUMN -->
 
 		</div>
+		
 	</main>
-
+	<?php } else { 
+		header("Location: error.php");
+	} ?>
 	</body>
 </html>

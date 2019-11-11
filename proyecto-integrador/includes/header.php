@@ -1,20 +1,5 @@
 <?php
- 	require_once("pdo.php");
-
-	$consulta = $db->prepare("SELECT * FROM user");
-	$consulta->execute();
-	$usuarios = $consulta->fetchAll(PDO::FETCH_ASSOC);
-	if (!empty($_GET["id"])){
-		$getUsuarioId = $_GET["id"];
-    foreach ($usuarios as $usuario){
-      if($getUsuarioId == $usuario["id"]){
-        $username = $usuario["name"];
-        $email = $usuario["email"];
-      }
-    }
-	}
-
-
+ 	require_once("includes/session-pdo.php");
 ?>
 
 <!DOCTYPE html>
@@ -35,7 +20,7 @@
 	</head>
 
 	<body>
-
+	<?php if (isset($_SESSION["usuarioLogueado"])) { ?>
 		<header class="container-fluid mb-5 main-header">
 			<div class="container">
 				<div class="row">
@@ -48,45 +33,48 @@
 						  <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
 						    <a class="dropdown-item" href="about.php">About Us </a>
 						    <a class="dropdown-item" href="faqs.php">Faqs</a>
-								<a class="dropdown-item" href="login.php">Login</a>
-								<!--<a class="dropdown-item" href="logout.php">Logout</a>-->
+							<a class="dropdown-item" href="logout.php">Logout</a>
 						  </div>
-					</div>
+						</div>
 						<a class="navbar-brand name-mob" href="index.php">W<strong>F</strong></a>
 						<a class="navbar-brand name-desk" href="index.php">Work<strong>FLow</strong></a>
 					</div>
 
 					<form class="form-inline col-lg-5 py-3">
-		        <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search">
-		      </form>
+				        <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search">
+				      </form>
 
 					<div class="col-7 col-lg-4 py-3 head-options">
 						<ul>
 							<li class="search-mob"><a href=""><i class="fas fa-search fa-2x"></i></a></li>
 							<!--<li><a href=""><i class="fas fa-sign-in-alt fa-2x"></i></a></li>-->
 							<li class="user-logo">
-								<?php if (!empty($getUsuarioId)) : ?>
-									<a href="profile.php?id=<?php echo $getUsuarioId ?>">
-										<img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSp3gZ8rLGb-NOO4VDjfiM-RBq0dkMFx2rX0-wnNje_L1Gq06qi" alt="">
-										<span><?php echo $username; ?></span>
-									</a>
-								<?php endif; ?>
-
+								<a href="profile.php">
+									<img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSp3gZ8rLGb-NOO4VDjfiM-RBq0dkMFx2rX0-wnNje_L1Gq06qi" alt="">
+									<span><?php echo $userName; ?></span>
+								</a>
 							</li>
 						</ul>
 					</div>
-
-	<!-- navbar bottom -->
-				<nav class="navbar navbar-bot nav justify-content-center fixed-bottom navbar-light bg-color">
-	  				<ul>
-	  					<li>
-                <?php if (!empty($getUsuarioId)) : ?>
-                  <a href="profile.php?id=<?php echo $getUsuarioId ?>" class="nav-item nav-link active"><i class="fas fa-user fa-2x"></i></a></li>
-                <?php endif; ?>
+					<!-- navbar bottom -->
+					<nav class="navbar navbar-bot nav justify-content-center fixed-bottom navbar-light bg-color">
+		  				<ul>
+		  					<li><a href="profile.php" class="nav-item nav-link active"><i class="fas fa-user fa-2x"></i></a></li>
 							<li class="mar"><a href="" class="nav-item nav-link active"><i class="fas fa-envelope fa-2x"></i></a></li>
 						</ul>
-				</nav>
-
+					</nav>
 				</div>
 			</div>
 		</header>
+	<?php } else { ?>
+		<header class="container-fluid mb-5 main-header">
+			<div class="container">
+				<div class="row">
+					<div class="col-5 col-lg-3 py-3">
+						<a class="navbar-brand name-mob" href="index.php">W<strong>F</strong></a>
+						<a class="navbar-brand name-desk" href="index.php">Work<strong>FLow</strong></a>
+					</div>
+				</div>			
+			</div>
+		</header>
+	<?php } ?>
