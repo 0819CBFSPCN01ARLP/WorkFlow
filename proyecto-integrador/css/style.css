@@ -22,6 +22,25 @@ body {
 .rounded-border{border-radius: 10px;}
 .bg {background-color: #fff;}
 .bg-2{background-color: #604bab;}
+.btn-publish,
+.btn-edit,
+.btn-delete {
+    display: block;
+    float: right;
+    border: 0;
+    background: transparent;
+		color: #999;
+		margin-left: 10px;
+}
+.icon-gray i {
+	color: #999;
+}
+.icon-gray:hover i,
+.btn-publish:hover,
+.btn-edit:hover,
+.btn-delete:hover {
+	color: #272727;
+}
 
 /* HEADER */
 .main-header{
@@ -80,23 +99,34 @@ body {
     padding-top: 77px;
 		padding-bottom: 50px;
 }
+
+.others-post article .user-info,
+.others-post article .user-comment,
+.others-post article .feedback-actions {
+	float: left;
+}
 .user-info,
 .user-logo,
 .user-name {
 	float: left;
   margin:0;
 }
-
 .user-info{
   margin-bottom:20px;
+}
+.user-actions {
+    margin-top: 16px;
+    float: right;
+    width: 50%;
+    font-size: 15px;
 }
 .user-post{
 	margin-top: 20px;
 }
 
-.user-info a{
+/*.user-info a{
   width:100%;
-}
+}*/
 
 .user-post h3{
     font-size: 18px;
@@ -174,8 +204,22 @@ body {
     border-top-left-radius: 10px;
     margin: 0 auto;
 }
+
+.user-comment-row,
+.user-comment-row form {
+    position: relative;
+}
+
 .user-comment-row p{
     margin-bottom:0;
+}
+
+.user-comment-row form textarea {
+    width: 100%;
+    border: 0;
+    margin: 5px 0 0 0;
+    border-radius: 8px;
+    padding: 10px 30px 10px 10px;
 }
 
 .user-comment-row:not(.user-comment-row-no-arrow):before {
@@ -190,9 +234,12 @@ body {
     top: 0;
 }
 
-.user-comment-image{
+.user-comment-image {
     color: #a004fa;
     float: right;
+    position: absolute;
+		top: 15px;
+    right: 10px;
 }
 
 .user-comment-image:hover,
@@ -354,6 +401,11 @@ aside .fas{
   font-size: 0.85rem;
 }
 
+.profile .header-user {
+	background: rgb(238,174,202);
+background: linear-gradient(90deg, rgba(238,174,202,1) 0%, rgba(148,187,233,1) 100%);
+}
+
 .header-user .user-info p{
       font-weight: 600;
       /* margin-left: 46px; */
@@ -397,6 +449,29 @@ aside .fas{
 
 .teams {
 	color: black
+}
+
+.widget-teams li {
+    position: relative;
+    padding: 0 10px 0 0;
+    margin-right: 10px;
+}
+.widget-teams li:after {
+	content: "";
+	position: absolute;
+	top: 5px;
+	right: 0;
+	width: 2px;
+	height: 15px;
+	background: #a004fa;
+}
+.widget-teams li:last-child:after {
+	display: none;
+}
+
+.widget-teams li:last-child {
+	padding: 0;
+	margin: 0;
 }
 
 /* NAV BOTTOM MOBILE */

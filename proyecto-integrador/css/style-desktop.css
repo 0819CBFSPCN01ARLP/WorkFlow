@@ -2,7 +2,7 @@
 
 	.main-header ul li.search-mob {
 		display: none;}
-	.navbar-bot ul li {
+	.navbar-bot{
 		display: none;}
 	.name-mob {
 		display: none;}
@@ -10,5 +10,5 @@
 		display: block;}
 	.inbox-desk .fa-envelope {
 			display: block;}
-	
+
 }

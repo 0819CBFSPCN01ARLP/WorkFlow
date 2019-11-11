@@ -33,25 +33,25 @@
     </div>
     <!-- END: CONTENT-TAB-BIRTHDAYS -->
 
-    <div class="tab-pane fade" id="pills-teams" role="tabpanel">
+    <div class="tab-pane widget-teams fade" id="pills-teams" role="tabpanel">
       <ul class="users">
         <li class="user-logo">
-          <a href="">| Account Management |</a>
+          <a href="">Account Management</a>
         </li>
         <li class="user-logo">
-          <a href="">Accounting |</a>
+          <a href="">Accounting</a>
         </li>
         <li class="user-logo">
-          <a href="">Analitycs Services |</a>
+          <a href="">Analitycs Services</a>
         </li>
         <li class="user-logo">
-          <a href="">Marketing |</a>
+          <a href="">Marketing</a>
         </li>
         <li class="user-logo">
-          <a href="">Consulting |</a>
+          <a href="">Consulting</a>
         </li>
         <li class="user-logo">
-          <a href="">Change Management |</a>
+          <a href="">Change Management</a>
         </li>
         <li class="user-logo">
           <a href=""><h4><strong>&nbsp;+</strong></h4></a>

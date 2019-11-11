@@ -7,7 +7,7 @@ $posteos = $consulta_post->fetchAll(PDO::FETCH_ASSOC);
 
 ?>
 <?php if ( isset($_SESSION["usuarioLogueado"]) ) { ?>
-	<main class="container main">
+	<main class="container main profile">
 		<div class="row">
 			<!-- START: HEADER-USER -->
 			<header class="col-12 col-sm-12 col-lg-12 mb-3">
@@ -73,13 +73,12 @@ $posteos = $consulta_post->fetchAll(PDO::FETCH_ASSOC);
 				<section class="user-comment p-3 mb-3 bg rounded-border">
 					<div class="row">
 						<div class="user-comment-row user-comment-row-no-arrow">
+							<p><strong>Hi <?php echo $userName; ?>!</strong></p>
 							<form class="form--post" action="send-post.php" method="post">
-								<p><strong>Hi <?php echo $userName; ?>!</strong></p>
-								<textarea placeholder="What's going on?" name="post"></textarea>
-								<a class="user-comment-image" href="#"><i class="fas fa-camera fa-2x"></i></a>
-								<button type="submit" name="submit">Submit</button>
+									<textarea placeholder="What's going on?" name="post"></textarea>
+									<a class="user-comment-image" href="#"><i class="fas fa-camera fa-2x"></i></a>
+									<button type="submit" name="submit" class="btn-publish icon-gray">Publish <i class="fab fa-telegram-plane"></i></button>
 							</form>
-
 						</div>
 					</div>
 				</section><!-- END:ARTICLE -->
@@ -97,6 +96,13 @@ $posteos = $consulta_post->fetchAll(PDO::FETCH_ASSOC);
 												<img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSp3gZ8rLGb-NOO4VDjfiM-RBq0dkMFx2rX0-wnNje_L1Gq06qi" alt="">
 												<span><?php echo $userName; ?></span>
 											</a>
+											<div class="user-actions">
+												<a class="btn-edit icon-gray" href="#">Edit <i class="far fa-edit"></i> </a>
+													<form class="form--post" action="delete-post.php" method="get">
+														<input type="hidden" value="<?php echo $postId; ?>" name="postId"></input>
+														<button type="submit" class="btn-delete icon-gray">Delete <i class="far fa-trash-alt"></i></button>
+													</form>
+											</div>
 										</div>
 										<div class="col-12 col-sm-12 col-lg-12 user-comment">
 											<p><?php echo $post["text"]; ?></p>
@@ -112,11 +118,6 @@ $posteos = $consulta_post->fetchAll(PDO::FETCH_ASSOC);
 												<li>7 likes</li>
 												<li class="ml-4"><a href="#"><i class="far fa-comment-dots fa-2x"></i></a></li>
 												<li>10 comments</li>
-
-												<form class="form--post" action="delete-post.php" method="get">
-													<input type="hidden" value="<?php echo $postId; ?>" name="postId"></input>
-													<button type="submit">Delete</button>
-												</form>
 											</ul>
 										</div>
 										<!-- START: FEEDBACK-ACTIONS -->
@@ -130,9 +131,9 @@ $posteos = $consulta_post->fetchAll(PDO::FETCH_ASSOC);
 			</section><!-- END:MAIN-CONTENT-COLUMN -->
 
 		</div>
-		
+
 	</main>
-	<?php } else { 
+	<?php } else {
 		header("Location: error.php");
 	} ?>
 	</body>
