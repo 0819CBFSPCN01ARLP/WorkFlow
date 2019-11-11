@@ -97,11 +97,11 @@ $posteos = $consulta_post->fetchAll(PDO::FETCH_ASSOC);
 												<span><?php echo $userName; ?></span>
 											</a>
 											<div class="user-actions">
-												<a class="btn-edit icon-gray" href="#">Edit <i class="far fa-edit"></i> </a>
-													<form class="form--post" action="delete-post.php" method="get">
+												<a class="btn-edit icon-gray" href="edit-post.php?id=<?= $postId; ?>">Edit <i class="far fa-edit"></i> </a>
+												<form class="form--post" action="delete-post.php" method="get">
 														<input type="hidden" value="<?php echo $postId; ?>" name="postId"></input>
 														<button type="submit" class="btn-delete icon-gray">Delete <i class="far fa-trash-alt"></i></button>
-													</form>
+												</form>
 											</div>
 										</div>
 										<div class="col-12 col-sm-12 col-lg-12 user-comment">
