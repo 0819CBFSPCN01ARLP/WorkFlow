@@ -4,6 +4,9 @@ $consulta_post = $db->prepare("SELECT * FROM post ORDER BY create_at DESC");
 $consulta_post->execute();
 $posteos = $consulta_post->fetchAll(PDO::FETCH_ASSOC);
 
+//$backUrl = "http://" . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];
+$backUrl = $_SERVER['REQUEST_URI'];
+
 ?>
 <?php if ( isset($_SESSION["usuarioLogueado"]) ) { ?>
 
@@ -40,6 +43,7 @@ $posteos = $consulta_post->fetchAll(PDO::FETCH_ASSOC);
 				<section class="others-post p-3 mb-3">
 					<div class="row">
 						<?php foreach ($posteos as $post) : ?>
+							<?php  $postId = $post["id"]; ?>
 							<article class="bg rounded-border">
 								<!-- START: USERS-COMMENTS -->
 								<div class="col-12 col-sm-12 col-lg-12 user-info">
@@ -48,7 +52,7 @@ $posteos = $consulta_post->fetchAll(PDO::FETCH_ASSOC);
 										<span>Lean Taylor</span>
 									</a>
 										<div class="user-actions">
-											<a class="btn-edit icon-gray" href="#">Edit <i class="far fa-edit"></i> </a>
+											<a class="btn-edit icon-gray" href="edit-post.php?id=<?= $postId; ?>&nextUrl=<?= $backUrl; ?>">Edit <i class="far fa-edit"></i> </a>
 											<?php if ($userId == $post["user_id"]) :
 											$postId = $post["id"]; ?>
 												<form class="form--post" action="delete-post.php" method="get">

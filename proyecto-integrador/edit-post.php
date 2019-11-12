@@ -1,4 +1,13 @@
-<?php require_once('includes/header.php');?>
+<?php require_once('includes/header.php');
+
+$postId = $_GET['id'];
+$editPost = $db->prepare("SELECT * FROM post WHERE id = :id");
+$editPost->execute([
+	":id" => $postId
+]);
+$elPost = $editPost->fetch(PDO::FETCH_ASSOC);
+
+?>
 
 <?php if ( isset($_SESSION["usuarioLogueado"]) ) { ?>
 
@@ -18,9 +27,11 @@
 							<div class="user-comment-row">
 								<p><strong>Hi <?php echo $userName; ?>!</strong></p>
 								<form class="form--post" action="send-edit-post.php" method="post">
-										<textarea placeholder="What's going on?" name="post"></textarea>
+										<input type="hidden" name="id" value="<?php echo $_GET['id']; ?>">
+										<input type="hidden" name="nextUrl" value="<?php echo $_GET['nextUrl']; ?>">
+										<textarea placeholder="What's going on?" name="post"><?php echo $elPost["text"]; ?></textarea>
 										<a class="user-comment-image" href="#"><i class="fas fa-camera fa-2x"></i></a>
-										<button type="submit" name="submit" class="btn-publish icon-gray">Publish <i class="fab fa-telegram-plane"></i></button>
+										<button type="submit" name="submit" class="btn-publish icon-gray">Save <i class="far fa-save"></i></button>
 								</form>
 							</div>
 						</div>

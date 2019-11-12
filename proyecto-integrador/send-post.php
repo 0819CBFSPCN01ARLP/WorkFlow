@@ -6,7 +6,7 @@ if (count($_POST)) {
 	$post = $_POST["post"];
 	$insertar = $db->prepare("INSERT into post
 	values (null, :post, null, null, :userId, NOW() )");
-	$insertar -> execute([
+	$insertar->execute([
 		":post"=>$post,
 		":userId"=>$userId
 	]);

@@ -1,9 +1,14 @@
 <?php
 require_once('includes/header.php');
 
-$consulta_post = $db->prepare("SELECT * FROM post ORDER BY create_at DESC");
-$consulta_post->execute();
+$consulta_post = $db->prepare("SELECT * FROM post WHERE user_id = :userId ORDER BY create_at DESC");
+$consulta_post->execute([
+		":userId"=>$userId
+]);
 $posteos = $consulta_post->fetchAll(PDO::FETCH_ASSOC);
+
+//$backUrl = "http://" . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];
+$backUrl = $_SERVER['REQUEST_URI'];
 
 ?>
 <?php if ( isset($_SESSION["usuarioLogueado"]) ) { ?>
@@ -87,7 +92,6 @@ $posteos = $consulta_post->fetchAll(PDO::FETCH_ASSOC);
 				<section class="others-post p-3 mb-3">
 					<div class="row">
 						<?php foreach ($posteos as $post) : ?>
-								<?php if ($post["user_id"] == $userId ) : ?>
 									<?php  $postId = $post["id"]; ?>
 									<article class="bg rounded-border" >
 										<!-- START: USERS-COMMENTS -->
@@ -97,7 +101,7 @@ $posteos = $consulta_post->fetchAll(PDO::FETCH_ASSOC);
 												<span><?php echo $userName; ?></span>
 											</a>
 											<div class="user-actions">
-												<a class="btn-edit icon-gray" href="edit-post.php?id=<?= $postId; ?>">Edit <i class="far fa-edit"></i> </a>
+												<a class="btn-edit icon-gray" href="edit-post.php?id=<?= $postId; ?>&nextUrl=<?= $backUrl; ?>">Edit <i class="far fa-edit"></i> </a>
 												<form class="form--post" action="delete-post.php" method="get">
 														<input type="hidden" value="<?php echo $postId; ?>" name="postId"></input>
 														<button type="submit" class="btn-delete icon-gray">Delete <i class="far fa-trash-alt"></i></button>
@@ -122,7 +126,6 @@ $posteos = $consulta_post->fetchAll(PDO::FETCH_ASSOC);
 										</div>
 										<!-- START: FEEDBACK-ACTIONS -->
 									</article>
-							<?php endif; ?>
 						<?php endforeach; ?>
 
 					</div>
