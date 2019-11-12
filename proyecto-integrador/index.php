@@ -1,16 +1,11 @@
 <?php require_once('includes/header.php');
-if (count($_POST)) {
-	$post = $_POST["post"];
-	$insertar = $db->prepare("INSERT into post
-	values (null, '$post', null, null, $getUsuarioId, NOW() )");
-	$insertar -> execute();
-}
 
 $consulta_post = $db->prepare("SELECT * FROM post ORDER BY create_at DESC");
 $consulta_post->execute();
 $posteos = $consulta_post->fetchAll(PDO::FETCH_ASSOC);
 
 ?>
+<?php if ( isset($_SESSION["usuarioLogueado"]) ) { ?>
 
 	<main class="container main">
 		<div class="row">
@@ -30,11 +25,11 @@ $posteos = $consulta_post->fetchAll(PDO::FETCH_ASSOC);
 						</figure>
 						<div class="col-10 col-sm-10 col-lg-11 user-comment">
 							<div class="user-comment-row">
-								<form class="form--post" action="index.php?id=<?php echo $getUsuarioId ?>" method="post">
-										<p><strong>Hi <?php echo $username; ?>!</strong></p>
+								<p><strong>Hi <?php echo $userName; ?>!</strong></p>
+								<form class="form--post" action="send-post.php" method="post">
 										<textarea placeholder="What's going on?" name="post"></textarea>
 										<a class="user-comment-image" href="#"><i class="fas fa-camera fa-2x"></i></a>
-										<button type="submit" name="submit">Submit</button>
+										<button type="submit" name="submit" class="btn-publish icon-gray">Publish <i class="fab fa-telegram-plane"></i></button>
 								</form>
 							</div>
 						</div>
@@ -52,6 +47,16 @@ $posteos = $consulta_post->fetchAll(PDO::FETCH_ASSOC);
 										<img src="https://ae01.alicdn.com/kf/HTB1Pi8ScpGWBuNjy0Fbq6z4sXXaX/ibboll-Luxury-Optical-Glasses-2018-Classic-Eye-Glasses-Frames-for-Men-Fashion-Clear-Eyeglasses-Male-Round.jpg" alt="">
 										<span>Lean Taylor</span>
 									</a>
+										<div class="user-actions">
+											<a class="btn-edit icon-gray" href="#">Edit <i class="far fa-edit"></i> </a>
+											<?php if ($userId == $post["user_id"]) :
+											$postId = $post["id"]; ?>
+												<form class="form--post" action="delete-post.php" method="get">
+													<input type="hidden" value="<?php echo $postId; ?>" name="postId"></input>
+													<button type="submit" class="btn-delete icon-gray">Delete <i class="far fa-trash-alt"></i></button>
+												</form>
+											<?php endif;?>
+										</div>
 								</div>
 								<div class="col-12 col-sm-12 col-lg-12 user-comment">
 									<p><?php echo $post["text"]; ?></p>
@@ -81,6 +86,8 @@ $posteos = $consulta_post->fetchAll(PDO::FETCH_ASSOC);
 
 		</div>
 	</main>
-
+	<?php } else {
+		header("Location: login.php");
+	} ?>
 	</body>
 </html>

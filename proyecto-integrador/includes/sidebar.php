@@ -26,7 +26,7 @@
   </article><!-- END:BIRTHDAY-BOX -->
 
   <!-- START:TEAMS-BOX -->
-  <article class="user-post p-3 mb-3 teams bg rounded-border">
+  <article class="user-post widget-teams p-3 mb-3 teams bg rounded-border">
     <div class="row">
       <div class="col-12 col-sm-12 col-lg-12 pt-2 ico-box">
         <h3><i class="fas fa-users fa-2x mr-2"></i><a class="teams" href="teams.php">Teams</a></h3>
@@ -34,22 +34,22 @@
       <div class="col-12 col-sm-12 col-lg-12 content-box">
         <ul class="mb-3 users">
           <li class="user-logo">
-            <a href="">| Account Management |</a>
+            <a href="">Account Management</a>
           </li>
           <li class="user-logo">
-            <a href="">Accounting |</a>
+            <a href="">Accounting</a>
           </li>
           <li class="user-logo">
-            <a href="">Analitycs Services |</a>
+            <a href="">Analitycs Services</a>
           </li>
           <li class="user-logo">
-            <a href="">Marketing |</a>
+            <a href="">Marketing</a>
           </li>
           <li class="user-logo">
-            <a href="">Consulting |</a>
+            <a href="">Consulting</a>
           </li>
           <li class="user-logo">
-            <a href="">Change Management |</a>
+            <a href="">Change Management</a>
           </li>
           <li class="user-logo">
             <a href=""><h4><strong>&nbsp;+</strong></h4></a>
