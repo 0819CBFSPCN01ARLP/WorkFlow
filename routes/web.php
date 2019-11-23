@@ -23,6 +23,8 @@ Route::get('/faqs', function () {
     return view('layouts/faqs');
 });
 
+//Route::post('/profile', 'PostController@addPost');
+
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');

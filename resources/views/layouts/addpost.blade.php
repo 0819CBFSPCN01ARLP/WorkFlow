@@ -68,9 +68,8 @@
 					<div class="row">
 						<div class="user-comment-row user-comment-row-no-arrow">
 							<p><strong>Hi {{ Auth::user()->name }}!</strong></p>
-							<form class="form--post" action="" method="post">
-                @csrf
-									<textarea placeholder="What's going on?" name="text"></textarea>
+							<form class="form--post" action="send-post.php" method="post">
+									<textarea placeholder="What's going on?" name="post"></textarea>
 									<a class="user-comment-image" href="#"><i class="fas fa-camera fa-2x"></i></a>
 									<button type="submit" name="submit" class="btn-publish icon-gray">Publish <i class="fab fa-telegram-plane"></i></button>
 							</form>
