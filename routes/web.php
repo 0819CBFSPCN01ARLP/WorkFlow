@@ -15,8 +15,12 @@ Route::get('/', 'HomeController@index');
 
 Route::get('/profile', 'ProfileController@profile');
 
-Route::get('/aboutus', function () {
+Route::get('/about-us', function () {
     return view('layouts/aboutus');
+});
+
+Route::get('/faqs', function () {
+    return view('layouts/faqs');
 });
 
 Auth::routes();

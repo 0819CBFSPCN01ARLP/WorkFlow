@@ -56,3 +56,5 @@ CREATE TABLE user (
 
 select * from user;
 select * from post;
+
+show users;

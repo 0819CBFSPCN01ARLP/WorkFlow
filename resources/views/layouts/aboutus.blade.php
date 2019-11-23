@@ -1,6 +1,7 @@
-@extends('layouts/base')
+@extends('layouts.base')
 
 @section('content')
+<main class="container main">
   <div class="row">
 
     <!-- START:MAIN-CONTENT-COLUMN -->
@@ -28,4 +29,5 @@
     </section><!-- END:MAIN-CONTENT-COLUMN -->
 
   </div>
+</main>
 @endsection

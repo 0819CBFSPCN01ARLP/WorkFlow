@@ -1,4 +1,4 @@
-@extends('layouts/base')
+@extends('layouts.base')
 
 @section('content')
   @guest
@@ -21,7 +21,7 @@
           </figure>
           <div class="col-10 col-sm-10 col-lg-11 user-comment">
             <div class="user-comment-row">
-              <p><strong>Hi USERNAME!</strong></p>
+              <p><strong>Hi {{ Auth::user()->name }}</strong></p>
               <form class="form--post" action="" method="post">
                   <textarea placeholder="What's going on?" name="post"></textarea>
                   <a class="user-comment-image" href="#"><i class="fas fa-camera fa-2x"></i></a>
