@@ -81,7 +81,7 @@
 				<!-- START:ARTICLE -->
 				<section class="others-post p-3 mb-3">
 					<div class="row">
-
+                  @forelse ($posts as $post)
 									<article class="bg rounded-border" >
 										<!-- START: USERS-COMMENTS -->
 										<div class="col-12 col-sm-12 col-lg-12 user-info">
@@ -115,6 +115,9 @@
 										</div>
 										<!-- START: FEEDBACK-ACTIONS -->
 									</article>
+                @empty
+                  <p>No hay posteos</p>
+                @endforelse
 
 					</div>
 				</section><!-- END:ARTICLE -->

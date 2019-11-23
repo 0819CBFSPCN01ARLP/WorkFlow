@@ -18,7 +18,9 @@ Route::get('/profile', 'ProfileController@profile');
 Route::get('/about-us', function () {
     return view('layouts/aboutus');
 });
-
+Route::get('/addpost', function () {
+    return view('layouts/profile');
+});
 Route::get('/faqs', function () {
     return view('layouts/faqs');
 });

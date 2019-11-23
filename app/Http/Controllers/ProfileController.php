@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-//use App\Profile;
+use App\Posts;
 
 class ProfileController extends Controller
 {
@@ -15,6 +15,7 @@ class ProfileController extends Controller
 
   public function profile()
   {
-    return view('layouts.profile');
+    $posts = Posts::All();
+    return view('layouts.profile', compact("posts"));
   }
 }
