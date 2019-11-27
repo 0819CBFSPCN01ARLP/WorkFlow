@@ -68,9 +68,10 @@
 					<div class="row">
 						<div class="user-comment-row user-comment-row-no-arrow">
 							<p><strong>Hi {{ Auth::user()->name }}!</strong></p>
-							<form class="form--post" action="" method="post">
-                @csrf
+							<form class="form--post" action="/profile" method="post">
+               					 @csrf
 									<textarea placeholder="What's going on?" name="text"></textarea>
+									<input type="hidden" name="where" value="profile">
 									<a class="user-comment-image" href="#"><i class="fas fa-camera fa-2x"></i></a>
 									<button type="submit" name="submit" class="btn-publish icon-gray">Publish <i class="fab fa-telegram-plane"></i></button>
 							</form>
@@ -82,7 +83,7 @@
 				<section class="others-post p-3 mb-3">
 					<div class="row">
                   @forelse ($posts as $post)
-									<article class="bg rounded-border" >
+									<article class="bg rounded-border col-12" >
 										<!-- START: USERS-COMMENTS -->
 										<div class="col-12 col-sm-12 col-lg-12 user-info">
 											<a href="#" class="user-logo mr-3">
@@ -90,16 +91,21 @@
 												<span>{{ Auth::user()->name }}</span>
 											</a>
 											<div class="user-actions">
-												<a class="btn-edit icon-gray" href="">Edit <i class="far fa-edit"></i> </a>
-												<form class="form--post" action="delete-post.php" method="get">
-														<input type="hidden" value="" name="postId"></input>
-														<button type="submit" class="btn-delete icon-gray">Delete <i class="far fa-trash-alt"></i></button>
+												<a class="btn-edit icon-gray" href="/edit-post/{{$post->id}}?where=profile">Edit <i class="far fa-edit"></i> </a>
+												<form class="form--post" action="/profile" method="post">
+													@csrf
+													@method("delete")
+													<input type="hidden" value="{{$post->id}}" name="id"></input>
+													<input type="hidden" name="where" value="profile">
+													<button type="submit" class="btn-delete icon-gray">Delete <i class="far fa-trash-alt"></i></button>
 												</form>
 											</div>
 										</div>
 										<div class="col-12 col-sm-12 col-lg-12 user-comment">
-											<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-											<img src="https://usabilitygeek.com/wp-content/uploads/2017/09/ux-before-ui-main.jpg" alt="">
+											<p>{{$post["text"]}}</p>
+                      						@if( $post["image"] )
+											  <img src="{{$post["image"]}}" alt="">
+                      						@endif
 										</div>
 										<!-- END: USERS-COMMENTS -->
 

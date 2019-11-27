@@ -27,8 +27,10 @@
           <div class="col-10 col-sm-10 col-lg-11 user-comment">
             <div class="user-comment-row">
               <p><strong>Hi {{ Auth::user()->name }}</strong></p>
-              <form class="form--post" action="" method="post">
-                  <textarea placeholder="What's going on?" name="post"></textarea>
+              <form class="form--post" action="/home" method="post">
+              @csrf
+                  <input type="hidden" name="where" value="home">
+                  <textarea placeholder="What's going on?" name="text"></textarea>
                   <a class="user-comment-image" href="#"><i class="fas fa-camera fa-2x"></i></a>
                   <button type="submit" name="submit" class="btn-publish icon-gray">Publish <i class="fab fa-telegram-plane"></i></button>
               </form>
@@ -41,7 +43,8 @@
       <section class="others-post p-3 mb-3">
         <div class="row">
 
-            <article class="bg rounded-border">
+            @forelse ($posts as $post)
+            <article class="bg rounded-border col-12">
               <!-- START: USERS-COMMENTS -->
               <div class="col-12 col-sm-12 col-lg-12 user-info">
                 <a href="#" class="user-logo mr-3">
@@ -49,18 +52,21 @@
                   <span>Lean Taylor</span>
                 </a>
                   <div class="user-actions">
-                    <a class="btn-edit icon-gray" href="">Edit <i class="far fa-edit"></i> </a>
-
-                      <form class="form--post" action="" method="get">
-                        <input type="hidden" value="" name="postId"></input>
-                        <button type="submit" class="btn-delete icon-gray">Delete <i class="far fa-trash-alt"></i></button>
-                      </form>
-
-                  </div>
+                        <a class="btn-edit icon-gray" href="/edit-post/{{$post->id}}?where=home">Edit <i class="far fa-edit"></i> </a>
+                        <form class="form--post" action="/home" method="post">
+                          @csrf
+                          @method("delete")
+                          <input type="hidden" value="{{$post->id}}" name="id"></input>
+                          <input type="hidden" name="where" value="home">
+                          <button type="submit" class="btn-delete icon-gray">Delete <i class="far fa-trash-alt"></i></button>
+                        </form>
+                      </div>
               </div>
               <div class="col-12 col-sm-12 col-lg-12 user-comment">
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-                <img src="https://mediaonemarketing.com.sg/wp-content/uploads/2019/07/think-like-UX-designer-1080x600.jpg" alt="">
+                <p>{{$post["text"]}}</p>
+                                  @if( $post["image"] )
+                        <img src="{{$post["image"]}}" alt="">
+                                  @endif
               </div>
               <!-- END: USERS-COMMENTS -->
 
@@ -75,6 +81,9 @@
               </div>
               <!-- START: FEEDBACK-ACTIONS -->
             </article>
+            @empty
+                  <p>No hay posteos</p>
+                @endforelse
 
         </div>
       </section><!-- END:MAIN-CONTENT-COLUMN -->

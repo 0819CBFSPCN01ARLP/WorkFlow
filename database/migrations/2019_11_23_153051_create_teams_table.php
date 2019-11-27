@@ -16,11 +16,17 @@ class CreateTeamsTable extends Migration
         Schema::create('teams', function (Blueprint $table) {
             $table->bigIncrements('id');
 
-            $table->string('email')->notNullable();
+            $table->string('email');
             $table->string('area', 300);
 
             $table->timestamps();
         });
+
+        Schema::table("users", function (Blueprint $table) {
+            $table->bigInt("team_id");
+            $table->foreign('team_id')->references('id')->on('teams');
+        });
+
     }
 
     /**
@@ -30,6 +36,7 @@ class CreateTeamsTable extends Migration
      */
     public function down()
     {
+      //
         Schema::dropIfExists('teams');
     }
 }

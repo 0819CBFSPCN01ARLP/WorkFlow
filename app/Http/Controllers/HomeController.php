@@ -3,7 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-
+use App\Posts;
+use Auth;
 class HomeController extends Controller
 {
     /**
@@ -22,7 +23,7 @@ class HomeController extends Controller
      * @return \Illuminate\Contracts\Support\Renderable
      */
     public function index(){
-
-      return view('home');
+        $posts = Posts::All();
+      return view('home',compact("posts"));
     }
 }
