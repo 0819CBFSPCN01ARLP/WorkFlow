@@ -32,6 +32,8 @@ Route::delete('/profile', 'PostController@deletePost');
 Route::post('/home', 'PostController@addPost');
 Route::delete('/home', 'PostController@deletePost');
 
+//Route::post('/profile', 'ProfileController@editProfile');
+
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');

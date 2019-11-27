@@ -16,12 +16,15 @@
 						<div class="col-10 col-sm-10 col-lg-11 user-comment">
 							<div class="user-comment-row">
 								<p><strong>Hi {{ Auth::user()->name }}!</strong></p>
-								<form class="form--post" action="/edit-post" method="post">
+								<form class="form--post" action="/edit-post" method="post" enctype="multipart/form-data">
 									@csrf
 									<input type="hidden" name="id" value="{{ $post['id'] }}">
 									<input type="hidden" name="where" value="{{ $where }}">
 									<textarea placeholder="What's going on?" name="text">{{ $post["text"] }}</textarea>
-									<a class="user-comment-image" href="#"><i class="fas fa-camera fa-2x"></i></a>
+									<div class="user-comment-image">
+					                    <input type="file" name="image">
+					                    <i class="fas fa-camera fa-2x"></i>
+					                </div>
 									<button type="submit" name="submit" class="btn-publish icon-gray">Save <i class="far fa-save"></i></button>
 								</form>
 							</div>

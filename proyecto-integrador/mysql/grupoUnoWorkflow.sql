@@ -54,7 +54,7 @@ CREATE TABLE user (
 	team_id INT(10) UNSIGNED DEFAULT NULL
 );
 
-select * from user;
-select * from post;
+select * from users;
+select * from posts;
 
 show users;

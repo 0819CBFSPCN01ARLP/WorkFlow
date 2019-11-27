@@ -247,6 +247,15 @@ body {
     color:#4e5e95;
 }
 
+.user-comment-image input[type=file] {
+    width: 30px;
+    position: absolute;
+    top: 0;
+    right: -4px;
+    z-index: 2;
+    opacity: 0;
+}
+
 .others-post article + article{
     margin-top:20px;
 }

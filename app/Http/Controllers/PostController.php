@@ -16,8 +16,12 @@ class PostController extends Controller
     public function addPost(Request $req) {
       $newPost = new Posts();
 
+      // Para guardar la imagen uso estas dos ĺineas
+      $ruta = $req->file("image")->store("public");
+      $nombreImagen = basename($ruta);
+
       $newPost->text=$req['text'];
-      $newPost->image=$req['image'];
+      $newPost->image=$nombreImagen;
       $newPost->user_id=Auth::user()->id;
 
       $newPost->save();

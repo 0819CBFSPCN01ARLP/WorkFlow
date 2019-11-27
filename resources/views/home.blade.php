@@ -27,11 +27,15 @@
           <div class="col-10 col-sm-10 col-lg-11 user-comment">
             <div class="user-comment-row">
               <p><strong>Hi {{ Auth::user()->name }}</strong></p>
-              <form class="form--post" action="/home" method="post">
+              <form class="form--post" action="/home" method="post" enctype="multipart/form-data">
               @csrf
                   <input type="hidden" name="where" value="home">
                   <textarea placeholder="What's going on?" name="text"></textarea>
-                  <a class="user-comment-image" href="#"><i class="fas fa-camera fa-2x"></i></a>
+                  <input type="hidden" name="where" value="profile">
+                  <div class="user-comment-image">
+                    <input type="file" name="image">
+                    <i class="fas fa-camera fa-2x"></i>
+                  </div>
                   <button type="submit" name="submit" class="btn-publish icon-gray">Publish <i class="fab fa-telegram-plane"></i></button>
               </form>
             </div>
@@ -64,9 +68,9 @@
               </div>
               <div class="col-12 col-sm-12 col-lg-12 user-comment">
                 <p>{{$post["text"]}}</p>
-                                  @if( $post["image"] )
-                        <img src="{{$post["image"]}}" alt="">
-                                  @endif
+                @if( $post["image"] )
+                  <img src="/storage/{{$post['image']}}" alt="">
+                @endif
               </div>
               <!-- END: USERS-COMMENTS -->
 
