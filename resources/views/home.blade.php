@@ -27,11 +27,17 @@
           <div class="col-10 col-sm-10 col-lg-11 user-comment">
             <div class="user-comment-row">
               <p><strong>Hi {{ Auth::user()->name }}</strong></p>
+
+              @foreach ($errors->all() as $error)
+              <div class="alert alert-danger mb-1" role="alert">
+                {{$error}}
+              </div>
+              @endforeach
+
               <form class="form--post" action="/home" method="post" enctype="multipart/form-data">
               @csrf
                   <input type="hidden" name="where" value="home">
                   <textarea placeholder="What's going on?" name="text"></textarea>
-                  <input type="hidden" name="where" value="profile">
                   <div class="user-comment-image">
                     <input type="file" name="image">
                     <i class="fas fa-camera fa-2x"></i>

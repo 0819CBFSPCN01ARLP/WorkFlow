@@ -16,12 +16,25 @@ class PostController extends Controller
     public function addPost(Request $req) {
       $newPost = new Posts();
 
-      // Para guardar la imagen uso estas dos ĺineas
-      $ruta = $req->file("image")->store("public");
-      $nombreImagen = basename($ruta);
+      $reglas = [
+        "text" => "string|min:1",
+      ];
+
+      $mensajes = [
+        "string" => "El campo :attribute debe ser un texto",
+        "min" => "El campo :attribute debe tener contenido"
+      ];
+
+      $this->validate($req, $reglas, $mensajes);
 
       $newPost->text=$req['text'];
-      $newPost->image=$nombreImagen;
+      // Para guardar la imagen uso estas dos ĺineas
+      $imagen = $req->file("image");
+      if ($imagen != null) {
+         $ruta = $imagen->store("public");
+         $nombreImagen = basename($ruta);
+         $post->image=$nombreImagen;
+      }
       $newPost->user_id=Auth::user()->id;
 
       $newPost->save();

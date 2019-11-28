@@ -77,9 +77,13 @@ body {
 }
 
 .main-header .navbar-brand{
-    color:#fff;
-    padding-top:10px;
+    color:#fff;  
 }
+
+.main-header .navbar-brand.name-mob {
+  padding-top:10px; 
+}
+
 
 .main-menu {float: left;}
 

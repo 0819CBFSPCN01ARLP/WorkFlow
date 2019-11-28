@@ -66,6 +66,13 @@
 					<div class="row">
 						<div class="user-comment-row user-comment-row-no-arrow">
 							<p><strong>Hi {{ Auth::user()->name }}!</strong></p>
+
+							@foreach ($errors->all() as $error)
+							<div class="alert alert-danger mb-1" role="alert">
+								{{$error}}
+							</div>
+							@endforeach
+
 							<form class="form--post" action="/profile" method="post" enctype="multipart/form-data">
                					@csrf
 								<textarea placeholder="What's going on?" name="text"></textarea>

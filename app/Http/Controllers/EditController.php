@@ -24,12 +24,17 @@ class EditController extends Controller
    	$post = Posts::find($form["id"]);
    	$where = $form["where"];
 
-   	// Para guardar la imagen uso estas dos ĺineas
-    $ruta = $form->file("image")->store("public");
-    $nombreImagen = basename($ruta);
+   	
+    $post->text=$form["text"];
 
-   	$post->text=$form["text"];
-   	$post->image=$nombreImagen;
+    // Para guardar la imagen uso estas dos ĺineas
+    $imagen = $form->file("image");
+    if ($imagen != null) {
+       $ruta = $imagen->store("public");
+       $nombreImagen = basename($ruta);
+       $post->image=$nombreImagen;
+    }
+
    	$post->save();
     return redirect($where);
   }
