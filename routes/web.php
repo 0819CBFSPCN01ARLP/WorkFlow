@@ -13,7 +13,7 @@
 
 Route::get('/', 'HomeController@index');
 
-Route::get('/profile', 'ProfileController@profile');
+Route::get('/profile/{id}', 'ProfileController@profile');
 
 Route::get('/about-us', function () {
     return view('layouts/aboutus');
@@ -31,6 +31,9 @@ Route::delete('/profile', 'PostController@deletePost');
 
 Route::post('/home', 'PostController@addPost');
 Route::delete('/home', 'PostController@deletePost');
+
+Route::post('/posts', 'PostController@addPost');
+Route::delete('/posts', 'PostController@deletePost');
 
 //Route::post('/profile', 'ProfileController@editProfile');
 

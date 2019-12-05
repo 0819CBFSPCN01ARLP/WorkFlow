@@ -33,7 +33,7 @@ class PostController extends Controller
       if ($imagen != null) {
          $ruta = $imagen->store("public");
          $nombreImagen = basename($ruta);
-         $post->image=$nombreImagen;
+         $newPost->image=$nombreImagen;
       }
       $newPost->user_id=Auth::user()->id;
 

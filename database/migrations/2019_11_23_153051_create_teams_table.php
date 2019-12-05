@@ -23,7 +23,7 @@ class CreateTeamsTable extends Migration
         });
 
         Schema::table("users", function (Blueprint $table) {
-            $table->bigInt("team_id");
+            $table->unsignedBigInteger("team_id")->nullable();
             $table->foreign('team_id')->references('id')->on('teams');
         });
 

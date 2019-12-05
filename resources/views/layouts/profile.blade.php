@@ -73,10 +73,10 @@
 							</div>
 							@endforeach
 
-							<form class="form--post" action="/profile" method="post" enctype="multipart/form-data">
+							<form class="form--post" action="/posts" method="post" enctype="multipart/form-data">
                					@csrf
 								<textarea placeholder="What's going on?" name="text"></textarea>
-								<input type="hidden" name="where" value="profile">
+								<input type="hidden" name="where" value="profile/{{ $profile_id }}">
 								<div class="user-comment-image">
 				                    <input type="file" name="image">
 				                    <i class="fas fa-camera fa-2x"></i>
@@ -96,11 +96,11 @@
 							<div class="col-12 col-sm-12 col-lg-12 user-info">
 								<a href="#" class="user-logo mr-3">
 									<img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSp3gZ8rLGb-NOO4VDjfiM-RBq0dkMFx2rX0-wnNje_L1Gq06qi" alt="">
-									<span>{{ Auth::user()->name }}</span>
+									<span>{{ $post->user->name }}</span>
 								</a>
 								<div class="user-actions">
 									<a class="btn-edit icon-gray" href="/edit-post/{{$post->id}}?where=profile">Edit <i class="far fa-edit"></i> </a>
-									<form class="form--post" action="/profile" method="post">
+									<form class="form--post" action="/profile/{{ $post->user->id }}" method="post">
 										@csrf
 										@method("delete")
 										<input type="hidden" value="{{$post->id}}" name="id"></input>

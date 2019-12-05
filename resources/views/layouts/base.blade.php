@@ -60,7 +60,7 @@
 							<li class="search-mob"><a href=""><i class="fas fa-search fa-2x"></i></a></li>
 							<!--<li><a href=""><i class="fas fa-sign-in-alt fa-2x"></i></a></li>-->
 							<li class="user-logo">
-								<a href="{{ url('/profile') }}">
+								<a href="{{ url('/profile') }}/{{ Auth::user()->id }}">
 									<img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSp3gZ8rLGb-NOO4VDjfiM-RBq0dkMFx2rX0-wnNje_L1Gq06qi" alt="">
 									<span>{{ Auth::user()->name }}</span>
 								</a>
@@ -70,8 +70,8 @@
 					<!-- navbar bottom -->
 					<nav class="navbar navbar-bot nav justify-content-center fixed-bottom navbar-light bg-color">
 		  				<ul>
-		  					<li><a href="{{ url('/profile') }}" class="nav-item nav-link active"><i class="fas fa-user fa-2x"></i></a></li>
-								<li class="mar"><a href="" class="nav-item nav-link active"><i class="fas fa-envelope fa-2x"></i></a></li>
+		  					<li><a href="{{ url('/profile/') }}{{ Auth::user()->id }}" class="nav-item nav-link active"><i class="fas fa-user fa-2x"></i></a></li>
+							<li class="mar"><a href="" class="nav-item nav-link active"><i class="fas fa-envelope fa-2x"></i></a></li>
 						</ul>
 					</nav>
 				</div>

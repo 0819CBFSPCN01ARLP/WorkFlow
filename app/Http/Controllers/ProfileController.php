@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Posts;
+use App\User;
 
 class ProfileController extends Controller
 {
@@ -13,9 +14,12 @@ class ProfileController extends Controller
   }
 
 
-  public function profile()
+  public function profile($id)
   {
-    $posts = Posts::All();
-    return view('layouts.profile', compact("posts"));
+  		$posts = User::find((int)$id)->posts;
+
+  		$profile_id = $id;
+    	return view('layouts.profile', compact("posts","profile_id"));
   }
 }
+
