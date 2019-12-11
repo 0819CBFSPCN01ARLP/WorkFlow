@@ -58,6 +58,17 @@
 
             <div class="form-group row">
                 <div class="col-md-12">
+                    <select name="team_id">
+                      @forelse ($teams as $team)
+                      <option value="{{$team->id}}">{{$team->area}}</option>
+                      @empty
+                      @endforelse
+                    </select>
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <div class="col-md-12">
                     <input placeholder="{{ __('Password') }}" id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="new-password">
 
                     @error('password')

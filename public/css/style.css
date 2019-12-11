@@ -42,6 +42,8 @@ body {
 	color: #272727;
 }
 
+.top-border {border-top: solid 1px #eee;}
+
 /* HEADER */
 .main-header{
   background: -webkit-gradient(linear, left top, right top, from(rgba(164,0,255,1)), color-stop(100%, rgba(71,91,144,0.9682247899159664)), to(rgba(156,0,255,1)));

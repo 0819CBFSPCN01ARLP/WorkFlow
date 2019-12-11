@@ -13,6 +13,17 @@
     	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
     	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 		<script src="https://kit.fontawesome.com/47b7e03e46.js"></script>
+		<script>
+			var messageAlert = document.querySelector('button[type=submit]');
+			var inputTextarea = document.querySelector('textarea');
+			messageAlert.onSubmit = function(event){
+				if (inputTextarea.value=="") {
+					alert('Completar');
+				} else {
+					alert('Enviado :)');
+				}
+			}
+		</script>
 		<link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i&display=swap" rel="stylesheet">
 	</head>
 
@@ -23,7 +34,7 @@
 					<div class="row">
 						<div class="col-5 col-lg-3 py-3">
 							<a class="navbar-brand name-mob" href="{{ url('/') }}">W<strong>F</strong></a>
-							<a class="navbar-brand name-desk" href="{{ url('/') }}">Work<strong>FLow</strong></a>
+							<a class="navbar-brand name-desk" href="{{ url('/') }}">Work<strong>Flow</strong></a>
 						</div>
 					</div>
 				</div>
@@ -33,7 +44,7 @@
 			<div class="container">
 				<div class="row">
 
-					<div class="col-5 col-lg-3 py-3">
+					<div class="col-6 col-lg-6 py-3">
 						<div class="dropdown main-menu pr-3">
 						  <a href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 						    <i class="fas fa-bars fa-2x"></i>
@@ -51,11 +62,7 @@
 						<a class="navbar-brand name-desk" href="{{ url('/') }}">Work<strong>FLow</strong></a>
 					</div>
 
-					<form class="form-inline col-lg-5 py-3">
-				        <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search">
-				  </form>
-
-					<div class="col-7 col-lg-4 py-3 head-options">
+					<div class="col-6 col-lg-6 py-3 head-options">
 						<ul>
 							<li class="search-mob"><a href=""><i class="fas fa-search fa-2x"></i></a></li>
 							<!--<li><a href=""><i class="fas fa-sign-in-alt fa-2x"></i></a></li>-->

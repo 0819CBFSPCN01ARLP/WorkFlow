@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Posts;
+use App\Teams;
 use Auth;
 class HomeController extends Controller
 {
@@ -25,5 +26,11 @@ class HomeController extends Controller
     public function index(){
         $posts = Posts::All();
       return view('home',compact("posts"));
+    }
+
+    public function showTeamsFields()
+    {
+        $teams = Teams::all();
+        return view('home',compact("teams"));
     }
 }

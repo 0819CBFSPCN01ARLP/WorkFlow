@@ -2,9 +2,6 @@
 
   <ul class="nav nav-pills" id="pills-tab" role="tablist">
     <li class="nav-item">
-      <a class="nav-link active" id="pills-home-tab" data-toggle="pill" href="#pills-birthdays" role="tab" aria-selected="true"><i class="fas fa-birthday-cake fa-2x mr-2"></i></a>
-    </li>
-    <li class="nav-item">
       <a class="nav-link" id="pills-profile-tab" data-toggle="pill" href="#pills-teams" role="tab" aria-selected="false"><i class="fas fa-users fa-2x mr-2" aria-hidden="true"></i></a>
     </li>
     <li class="nav-item">
@@ -15,48 +12,15 @@
 
   <div class="tab-content p-3 bg" id="pills-tabContent">
 
-    <div class="tab-pane fade show active" id="pills-birthdays" role="tabpanel">
-      <ul class="birthdays">
-        <li class="user-logo">
-          <a href="#">
-            <img src="https://everydaynutrition.co.uk/wp-content/uploads/2015/01/default-user-avatar.png" alt="">
-            <span>User Name</span>
-          </a>
-        </li>
-        <li class="user-logo">
-          <a href="#">
-            <img src="https://everydaynutrition.co.uk/wp-content/uploads/2015/01/default-user-avatar.png" alt="">
-            <span>User Name</span>
-          </a>
-        </li>
-      </ul>
-    </div>
-    <!-- END: CONTENT-TAB-BIRTHDAYS -->
-
     <div class="tab-pane widget-teams fade" id="pills-teams" role="tabpanel">
       <ul class="users">
-        <li class="user-logo">
-          <a href="">Account Management</a>
-        </li>
-        <li class="user-logo">
-          <a href="">Accounting</a>
-        </li>
-        <li class="user-logo">
-          <a href="">Analitycs Services</a>
-        </li>
-        <li class="user-logo">
-          <a href="">Marketing</a>
-        </li>
-        <li class="user-logo">
-          <a href="">Consulting</a>
-        </li>
-        <li class="user-logo">
-          <a href="">Change Management</a>
-        </li>
-        <li class="user-logo">
-          <a href=""><h4><strong>&nbsp;+</strong></h4></a>
-        </li>
-
+        <?php /*@forelse ($teams as $team)
+        <option value="{{$team->id}}">{{$team->area}}</option>
+          <li class="user-logo">
+            <a href="">{{$team->area}}</a>
+          </li>
+        @empty
+        @endforelse*/?>
       </ul>
     </div>
     <!-- END: CONTENT-TAB-TEAMS -->

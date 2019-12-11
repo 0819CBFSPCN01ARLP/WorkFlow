@@ -56,5 +56,11 @@ CREATE TABLE user (
 
 select * from users;
 select * from posts;
+select * from teams;
 
 show users;
+describe teams;
+
+INSERT INTO comments (1,'comentario',null,1,1,null,null);
+
+select * from comments;

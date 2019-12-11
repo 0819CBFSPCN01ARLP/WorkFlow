@@ -8,7 +8,9 @@
     <!-- START:SECTION -->
     @include('includes/sidebar-mobile')
     <!-- END:SECTION -->
-
+    <!-- START: SIDEBAR -->
+      @include('includes/sidebar')
+      <!-- END: SIDEBAR -->
     <!-- START:MAIN-CONTENT-COLUMN -->
     <section class="col-12 col-sm-12 col-lg-8 feed-content">
 
@@ -59,11 +61,11 @@
               <div class="col-12 col-sm-12 col-lg-12 user-info">
                 <a href="#" class="user-logo mr-3">
                   <img src="https://ae01.alicdn.com/kf/HTB1Pi8ScpGWBuNjy0Fbq6z4sXXaX/ibboll-Luxury-Optical-Glasses-2018-Classic-Eye-Glasses-Frames-for-Men-Fashion-Clear-Eyeglasses-Male-Round.jpg" alt="">
-                  <span>Lean Taylor</span>
+                  <span>{{ $post->user->name }}</span>
                 </a>
                   <div class="user-actions">
                         <a class="btn-edit icon-gray" href="/edit-post/{{$post->id}}?where=home">Edit <i class="far fa-edit"></i> </a>
-                        <form class="form--post" action="/home" method="post">
+                        <form class="form--post" action="/comment" method="post">
                           @csrf
                           @method("delete")
                           <input type="hidden" value="{{$post->id}}" name="id"></input>
@@ -90,18 +92,30 @@
                 </ul>
               </div>
               <!-- START: FEEDBACK-ACTIONS -->
+
+              @if( $post->comment )
+                @forelse ($post->comment as $comment)
+                <div class="col-12 col-sm-12 col-lg-12 pt-3 user-comment top-border">
+                  <p><strong>{{ $comment->user->name }}:</strong> {{$comment['text']}}</p>
+                </div>
+                @empty
+                @endforelse
+                <form class="form--post" action="/home" method="post">
+                  @csrf
+                      <input type="hidden" name="post_id" value="{{$post->id}}">
+                      <textarea placeholder="What's going on?" name="text"></textarea>
+                      <button type="submit" name="submit" class="btn-publish icon-gray">Comment <i class="fab fa-telegram-plane"></i></button>
+                  </form>
+              @endif
+
             </article>
             @empty
-                  <p>No hay posteos</p>
-                @endforelse
+              <p>No hay posteos</p>
+            @endforelse
 
         </div>
       </section><!-- END:MAIN-CONTENT-COLUMN -->
     </section>
-
-    <!-- START: SIDEBAR -->
-    @include('includes/sidebar')
-    <!-- END: SIDEBAR -->
 
   </div>
 </main>  
