@@ -40,7 +40,7 @@ class CommentController extends Controller
 
       $newComment->save();
 
-      return redirect('/');
+      return redirect($req["where"]);
 
     }
 

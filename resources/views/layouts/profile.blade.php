@@ -13,7 +13,7 @@
 								<img src="/storage/{{ $profile->image }}" alt="">
 							</figure>
 							@else
-							<figure> 
+							<figure class="col-2 col-sm-2 col-lg-2 user-logo"> 
 								<img src="https://ae01.alicdn.com/kf/HTB1Pi8ScpGWBuNjy0Fbq6z4sXXaX/ibboll-Luxury-Optical-Glasses-2018-Classic-Eye-Glasses-Frames-for-Men-Fashion-Clear-Eyeglasses-Male-Round.jpg" alt="">
 							</figure>
 							@endif
@@ -78,6 +78,7 @@
 			<section class="col-12 col-sm-12 col-lg-8 feed-content">
 
 				<!-- START:ARTICLE -->
+				@if($profile_id == Auth::user()->id)
 				<section class="user-comment p-3 mb-3 bg rounded-border">
 					<div class="row">
 						<div class="user-comment-row user-comment-row-no-arrow">
@@ -102,6 +103,7 @@
 						</div>
 					</div>
 				</section><!-- END:ARTICLE -->
+				@endif
 
 				<!-- START:ARTICLE -->
 				<section class="others-post p-3 mb-3">
@@ -118,6 +120,7 @@
 									@endif
 									<span>{{ $post->user->name }}</span>
 								</a>
+								@if($profile_id == Auth::user()->id)
 								<div class="user-actions">
 									<a class="btn-edit icon-gray" href="/edit-post/{{$post->id}}?where=profile/{{ $profile_id }}">Edit <i class="far fa-edit"></i> </a>
 									<form class="form--post" action="/posts" method="post">
@@ -128,6 +131,7 @@
 										<button type="submit" class="btn-delete icon-gray">Delete <i class="far fa-trash-alt"></i></button>
 									</form>
 								</div>
+								@endif
 							</div>
 							<div class="col-12 col-sm-12 col-lg-12 user-comment">
 								<p>{{$post["text"]}}</p>
@@ -136,6 +140,22 @@
                       			@endif
 							</div>
 							<!-- END: USERS-COMMENTS -->
+
+							@if( $post->comment )
+			                @forelse ($post->comment as $comment)
+			                <div class="col-12 col-sm-12 col-lg-12 pt-3 user-comment top-border">
+			                  <p><strong>{{ $comment->user->name }}:</strong> {{$comment['text']}}</p>
+			                </div>
+			                @empty
+			                @endforelse
+			                <form class="form--post" action="/comment" method="post">
+			                  @csrf
+			                      <input type="hidden" name="post_id" value="{{$post->id}}">
+			                      <input type="hidden" name="where" value="profile/{{ $profile_id }}">
+			                      <textarea placeholder="What's going on?" name="text"></textarea>
+			                      <button type="submit" name="submit" class="btn-publish icon-gray">Comment <i class="fab fa-telegram-plane"></i></button>
+			                  </form>
+			              @endif
 
 							<!-- START: FEEDBACK-ACTIONS -->
 							<div class="col-12 col-sm-12 col-lg-12 p-3 feedback-actions">

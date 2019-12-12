@@ -62,14 +62,16 @@
               <!-- START: USERS-COMMENTS -->
               <div class="col-12 col-sm-12 col-lg-12 user-info">
                 <a href="/profile/{{ $post->user->id }}" class="user-logo mr-3">
-                    @if($profile->user_id == $post->user->id)
-                      <img src="/storage/{{ $profile->image }}" alt="">
+                    
+                    @if($post->user->profile && $post->user->profile->image)
+
+                      <img src="/storage/{{ $post->user->profile->image }}" alt="">
                     @else
                        <img src="https://ae01.alicdn.com/kf/HTB1Pi8ScpGWBuNjy0Fbq6z4sXXaX/ibboll-Luxury-Optical-Glasses-2018-Classic-Eye-Glasses-Frames-for-Men-Fashion-Clear-Eyeglasses-Male-Round.jpg" alt="">
                     @endif
                   <span>{{ $post->user->name }}</span>
                 </a>
-                @if($post->user->name == Auth::user()->name)
+                @if($post->user->id == Auth::user()->id)
                   <div class="user-actions">
                     <a class="btn-edit icon-gray" href="/edit-post/{{$post->id}}?where=home">Edit <i class="far fa-edit"></i> </a>
                     <form class="form--post" action="/home" method="post">
@@ -111,6 +113,7 @@
                 <form class="form--post" action="/comment" method="post">
                   @csrf
                       <input type="hidden" name="post_id" value="{{$post->id}}">
+                      <input type="hidden" name="where" value="home">
                       <textarea placeholder="What's going on?" name="text"></textarea>
                       <button type="submit" name="submit" class="btn-publish icon-gray">Comment <i class="fab fa-telegram-plane"></i></button>
                   </form>

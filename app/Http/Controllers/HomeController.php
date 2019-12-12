@@ -31,6 +31,16 @@ class HomeController extends Controller
       return view('home',compact("posts","teams","profile"));
     }
 
+    public function aboutus(){
+        $profile = Profile::where('user_id', Auth::user()->id)->first();
+        return view('layouts/aboutus',compact("profile"));
+    }
+
+    public function faq(){
+        $profile = Profile::where('user_id', Auth::user()->id)->first();
+        return view('layouts/faqs',compact("profile"));
+    }
+
     public function showTeamsFields()
     {
         $teams = Teams::all();
