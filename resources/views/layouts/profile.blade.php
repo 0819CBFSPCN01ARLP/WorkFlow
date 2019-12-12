@@ -8,10 +8,27 @@
 				<div class="header-user bg">
 					<div class="row">
 						<div class="col-10 offset-1 col-sm-11 offset-sm-1 col-lg-11 offset-lg-1 user-info">
+							@if($profile)
 							<figure class="col-2 col-sm-2 col-lg-2 user-logo">
-								<img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSp3gZ8rLGb-NOO4VDjfiM-RBq0dkMFx2rX0-wnNje_L1Gq06qi" alt="">
+								<img src="/storage/{{ $profile->image }}" alt="">
 							</figure>
-							<p></p>
+							@else
+							<figure> 
+								<img src="https://ae01.alicdn.com/kf/HTB1Pi8ScpGWBuNjy0Fbq6z4sXXaX/ibboll-Luxury-Optical-Glasses-2018-Classic-Eye-Glasses-Frames-for-Men-Fashion-Clear-Eyeglasses-Male-Round.jpg" alt="">
+							</figure>
+							@endif
+							@if ( Auth::user()->id == $profile_id)
+							<form class="form--post" action="/profileUploadImg" method="post" enctype="multipart/form-data">
+               					@csrf
+								
+								<div class="user-comment-image">
+				                    <input type="file" name="image">
+				                    <i class="fas fa-camera fa-2x"></i>
+				                    <input type="hidden" name="where" value="profile/{{ $profile_id }}">
+				                  </div>
+								<button style="margin-top:20px; color:#fff;" type="submit" name="submit" class="btn-publish">Save</button>
+							</form>
+							@endif
 						</div>
 					</div>
 				</div>
@@ -29,8 +46,7 @@
 						</div>
 						<div class="col-10 col-sm-10 col-lg-10 content-box">
 							<ul class="mb-3">
-								<li>Lorem ipsum dolor sit amet.</li>
-								<li>Consectetur adipisicing elit.</li>
+								<li>{{ $team->area }}</li>
 							</ul>
 						</div>
 					</div>
@@ -80,7 +96,7 @@
 								<div class="user-comment-image">
 				                    <input type="file" name="image">
 				                    <i class="fas fa-camera fa-2x"></i>
-				                </div>
+				                  </div>
 								<button type="submit" name="submit" class="btn-publish icon-gray">Publish <i class="fab fa-telegram-plane"></i></button>
 							</form>
 						</div>
@@ -95,16 +111,20 @@
 							<!-- START: USERS-COMMENTS -->
 							<div class="col-12 col-sm-12 col-lg-12 user-info">
 								<a href="#" class="user-logo mr-3">
-									<img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSp3gZ8rLGb-NOO4VDjfiM-RBq0dkMFx2rX0-wnNje_L1Gq06qi" alt="">
+									@if($profile)
+									<img src="/storage/{{ $profile->image }}" alt="">
+									@else
+							 		<img src="https://ae01.alicdn.com/kf/HTB1Pi8ScpGWBuNjy0Fbq6z4sXXaX/ibboll-Luxury-Optical-Glasses-2018-Classic-Eye-Glasses-Frames-for-Men-Fashion-Clear-Eyeglasses-Male-Round.jpg" alt="">
+									@endif
 									<span>{{ $post->user->name }}</span>
 								</a>
 								<div class="user-actions">
-									<a class="btn-edit icon-gray" href="/edit-post/{{$post->id}}?where=profile">Edit <i class="far fa-edit"></i> </a>
-									<form class="form--post" action="/profile/{{ $post->user->id }}" method="post">
+									<a class="btn-edit icon-gray" href="/edit-post/{{$post->id}}?where=profile/{{ $profile_id }}">Edit <i class="far fa-edit"></i> </a>
+									<form class="form--post" action="/posts" method="post">
 										@csrf
 										@method("delete")
 										<input type="hidden" value="{{$post->id}}" name="id"></input>
-										<input type="hidden" name="where" value="profile">
+										<input type="hidden" name="where" value="profile/{{ $profile_id }}">
 										<button type="submit" class="btn-delete icon-gray">Delete <i class="far fa-trash-alt"></i></button>
 									</form>
 								</div>

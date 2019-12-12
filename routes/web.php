@@ -27,10 +27,11 @@ Route::get('/edit-post/{id}', 'EditController@editPost');
 Route::post('/edit-post', 'EditController@editPostEdit');
 
 Route::post('/profile', 'PostController@addPost');
-Route::delete('/profile', 'PostController@deletePost');
+Route::post('/profileUploadImg', 'ProfileController@editImg');
 
 Route::post('/home', 'PostController@addPost');
 Route::delete('/home', 'PostController@deletePost');
+Route::get('/home', 'HomeController@index')->name('home');
 
 Route::post('/posts', 'PostController@addPost');
 Route::delete('/posts', 'PostController@deletePost');
@@ -39,6 +40,5 @@ Route::delete('/posts', 'PostController@deletePost');
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
 
 Route::post('/comment', 'CommentController@addComment');

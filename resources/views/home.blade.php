@@ -23,9 +23,11 @@
       <!-- START:SECTION -->
       <section class="user-post p-3 mb-3 bg rounded-border">
         <div class="row">
+          @if($profile)
           <figure class="col-2 col-sm-2 col-lg-1 user-logo">
-            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSp3gZ8rLGb-NOO4VDjfiM-RBq0dkMFx2rX0-wnNje_L1Gq06qi" alt="">
+            <img src="/storage/{{ $profile->image }}" alt="">
           </figure>
+          @endif
           <div class="col-10 col-sm-10 col-lg-11 user-comment">
             <div class="user-comment-row">
               <p><strong>Hi {{ Auth::user()->name }}</strong></p>
@@ -59,20 +61,26 @@
             <article class="bg rounded-border col-12">
               <!-- START: USERS-COMMENTS -->
               <div class="col-12 col-sm-12 col-lg-12 user-info">
-                <a href="#" class="user-logo mr-3">
-                  <img src="https://ae01.alicdn.com/kf/HTB1Pi8ScpGWBuNjy0Fbq6z4sXXaX/ibboll-Luxury-Optical-Glasses-2018-Classic-Eye-Glasses-Frames-for-Men-Fashion-Clear-Eyeglasses-Male-Round.jpg" alt="">
+                <a href="/profile/{{ $post->user->id }}" class="user-logo mr-3">
+                    @if($profile->user_id == $post->user->id)
+                      <img src="/storage/{{ $profile->image }}" alt="">
+                    @else
+                       <img src="https://ae01.alicdn.com/kf/HTB1Pi8ScpGWBuNjy0Fbq6z4sXXaX/ibboll-Luxury-Optical-Glasses-2018-Classic-Eye-Glasses-Frames-for-Men-Fashion-Clear-Eyeglasses-Male-Round.jpg" alt="">
+                    @endif
                   <span>{{ $post->user->name }}</span>
                 </a>
+                @if($post->user->name == Auth::user()->name)
                   <div class="user-actions">
-                        <a class="btn-edit icon-gray" href="/edit-post/{{$post->id}}?where=home">Edit <i class="far fa-edit"></i> </a>
-                        <form class="form--post" action="/comment" method="post">
-                          @csrf
-                          @method("delete")
-                          <input type="hidden" value="{{$post->id}}" name="id"></input>
-                          <input type="hidden" name="where" value="home">
-                          <button type="submit" class="btn-delete icon-gray">Delete <i class="far fa-trash-alt"></i></button>
-                        </form>
-                      </div>
+                    <a class="btn-edit icon-gray" href="/edit-post/{{$post->id}}?where=home">Edit <i class="far fa-edit"></i> </a>
+                    <form class="form--post" action="/home" method="post">
+                      @csrf
+                      @method("delete")
+                      <input type="hidden" value="{{$post->id}}" name="id"></input>
+                      <input type="hidden" name="where" value="home">
+                      <button type="submit" class="btn-delete icon-gray">Delete <i class="far fa-trash-alt"></i></button>
+                    </form>
+                  </div>
+                  @endif
               </div>
               <div class="col-12 col-sm-12 col-lg-12 user-comment">
                 <p>{{$post["text"]}}</p>
@@ -100,7 +108,7 @@
                 </div>
                 @empty
                 @endforelse
-                <form class="form--post" action="/home" method="post">
+                <form class="form--post" action="/comment" method="post">
                   @csrf
                       <input type="hidden" name="post_id" value="{{$post->id}}">
                       <textarea placeholder="What's going on?" name="text"></textarea>

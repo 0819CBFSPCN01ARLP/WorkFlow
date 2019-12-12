@@ -8,13 +8,12 @@
       </div>
       <div class="col-12 col-sm-12 col-lg-12 content-box">
         <ul class="mb-3 users">
-          <?php /*@forelse ($teams as $team)
-        <option value="{{$team->id}}">{{$team->area}}</option>
-          <li class="user-logo">
-            <a href="">{{$team->area}}</a>
-          </li>
-        @empty
-        @endforelse*/?>
+          @forelse ($teams as $team)
+            <li class="user-logo">
+              {{$team->area}}
+            </li>
+          @empty
+        @endforelse
         </ul>
       </div>
     </div>

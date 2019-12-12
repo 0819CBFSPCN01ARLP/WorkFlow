@@ -7,5 +7,9 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Profile extends Model
 {
-    use SoftDeletes;
+    //use SoftDeletes;
+
+    function user(){
+    	return $this->hasOne('App\User');
+    }
 }

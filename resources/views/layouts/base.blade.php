@@ -68,7 +68,9 @@
 							<!--<li><a href=""><i class="fas fa-sign-in-alt fa-2x"></i></a></li>-->
 							<li class="user-logo">
 								<a href="{{ url('/profile') }}/{{ Auth::user()->id }}">
-									<img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSp3gZ8rLGb-NOO4VDjfiM-RBq0dkMFx2rX0-wnNje_L1Gq06qi" alt="">
+									@if($profile)
+										<img src="/storage/{{ $profile->image }}" alt="">
+									@endif
 									<span>{{ Auth::user()->name }}</span>
 								</a>
 							</li>
