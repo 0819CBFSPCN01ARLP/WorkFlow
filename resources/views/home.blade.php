@@ -28,7 +28,7 @@
             <img src="/storage/{{ $profile->image }}" alt="">
           </figure>
           @endif
-          <div class="col-10 col-sm-10 col-lg-11 user-comment">
+          <div class="col-12 col-sm-10 col-lg-12 user-comment">
             <div class="user-comment-row">
               <p><strong>Hi {{ Auth::user()->name }}</strong></p>
 
@@ -38,15 +38,15 @@
               </div>
               @endforeach
 
-              <form class="form--post" action="/home" method="post" enctype="multipart/form-data">
+              <form class="form--post win-modal" action="/home" method="post" enctype="multipart/form-data">
               @csrf
                   <input type="hidden" name="where" value="home">
                   <textarea placeholder="What's going on?" name="text"></textarea>
-                  <div class="user-comment-image">
+                  <div class="user-comment-image cameraimg2">
                     <input type="file" name="image">
                     <i class="fas fa-camera fa-2x"></i>
                   </div>
-                  <button type="submit" name="submit" class="btn-publish icon-gray">Publish <i class="fab fa-telegram-plane"></i></button>
+                  <button type="submit" name="submit" class="btn-publish icon-gray hvr-icon-rotate ">Publish <i class="fab fa-telegram-plane hvr-icon "></i></button>
               </form>
             </div>
           </div>
@@ -62,24 +62,24 @@
               <!-- START: USERS-COMMENTS -->
               <div class="col-12 col-sm-12 col-lg-12 user-info">
                 <a href="/profile/{{ $post->user->id }}" class="user-logo mr-3">
-                    
+
                     @if($post->user->profile && $post->user->profile->image)
 
                       <img src="/storage/{{ $post->user->profile->image }}" alt="">
                     @else
-                       <img src="https://ae01.alicdn.com/kf/HTB1Pi8ScpGWBuNjy0Fbq6z4sXXaX/ibboll-Luxury-Optical-Glasses-2018-Classic-Eye-Glasses-Frames-for-Men-Fashion-Clear-Eyeglasses-Male-Round.jpg" alt="">
+                       <img src="https://i.ibb.co/p1ydynX/images.png" alt="">
                     @endif
                   <span>{{ $post->user->name }}</span>
                 </a>
                 @if($post->user->id == Auth::user()->id)
                   <div class="user-actions">
-                    <a class="btn-edit icon-gray" href="/edit-post/{{$post->id}}?where=home">Edit <i class="far fa-edit"></i> </a>
+                    <a class="btn-edit icon-gray hvr-icon-rotate" href="/edit-post/{{$post->id}}?where=home">Edit <i class="far fa-edit hvr-icon"></i> </a>
                     <form class="form--post" action="/home" method="post">
                       @csrf
                       @method("delete")
                       <input type="hidden" value="{{$post->id}}" name="id"></input>
                       <input type="hidden" name="where" value="home">
-                      <button type="submit" class="btn-delete icon-gray">Delete <i class="far fa-trash-alt"></i></button>
+                      <button type="submit" class="btn-delete icon-gray hvr-icon-rotate">Delete <i class="far fa-trash-alt hvr-icon"></i></button>
                     </form>
                   </div>
                   @endif
@@ -112,11 +112,13 @@
                 @endforelse
                 <form class="form--post" action="/comment" method="post">
                   @csrf
+                    <div class="form-group basic-textarea rounded-corners">
                       <input type="hidden" name="post_id" value="{{$post->id}}">
                       <input type="hidden" name="where" value="home">
-                      <textarea placeholder="What's going on?" name="text"></textarea>
-                      <button type="submit" name="submit" class="btn-publish icon-gray">Comment <i class="fab fa-telegram-plane"></i></button>
-                  </form>
+                      <textarea name="text" class="form-control z-depth-1 mb-2" id="exampleFormControlTextarea345" rows="2" placeholder="Write your comment..."></textarea>
+                      <button type="submit" name="submit" class="btn-publish icon-gray hvr-icon-rotate">Post Comment <i class="fab fa-telegram-plane hvr-icon"></i></button>
+                    </div>
+                </form>
               @endif
 
             </article>
@@ -129,5 +131,5 @@
     </section>
 
   </div>
-</main>  
+</main>
 @endsection

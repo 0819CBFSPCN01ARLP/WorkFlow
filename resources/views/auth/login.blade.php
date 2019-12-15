@@ -56,7 +56,7 @@
 
             <div class="form-group row mb-0">
                 <div class="col-md-12">
-                    <button class=" contact-but btn btn-outline-info btn-block z-depth-0 my-4 waves-effect" name="submit" type="submit">{{ __('Login') }}</button>
+                    <button class=" contact-but btn btn-outline-info btn-block z-depth-0 my-4 waves-effect hvr-shadow" name="submit" type="submit">{{ __('Login') }}</button>
 
                     <p class="message">
                       @if (Route::has('register'))

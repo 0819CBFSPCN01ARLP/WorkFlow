@@ -14,19 +14,13 @@
 
     <div class="tab-pane widget-teams fade" id="pills-teams" role="tabpanel">
       <ul class="users">
-        <?php /*@forelse ($teams as $team)
-        <option value="{{$team->id}}">{{$team->area}}</option>
-          <li class="user-logo">
-            <a href="">{{$team->area}}</a>
-          </li>
-        @empty
-        @endforelse*/?>
+        <p class="hastags"><a href="">| Informatics |</a><a href="">Art and Design |</a><a href="">Social Sciences |</a><a href="">Medicine |</a><a href="">Economic Sciences |</a></p>
       </ul>
     </div>
     <!-- END: CONTENT-TAB-TEAMS -->
 
     <div class="tab-pane fade" id="pills-hashtags" role="tabpanel">
-        <p class="hastags"><a href="">#hastag1</a> <a href="">#hastag2</a> <a href="">#hastag1</a> <a href="">#hastag2</a> <a href="">#hastag1</a> <a href="">#hastag2</a></p>
+        <p class="hastags"><a href="">#meetings</a> <a href="">#importantDates</a> <a href="">#holidays</a> <a href="">#elections</a> <a href="">#schedules</a> <a href="">#olympics</a></p>
     </div>
     <!-- END: CONTENT-TAB-HASHTAGS -->
 

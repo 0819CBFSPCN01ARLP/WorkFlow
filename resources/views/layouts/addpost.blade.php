@@ -27,7 +27,7 @@
 				<article class="user-post mb-3 mt-0 education bg rounded-border">
 					<div class="row">
 						<div class="col-2 col-sm-2 col-lg-2 pt-2 ico-box">
-							<i class="fas fa-graduation-cap fa-2x"></i>
+							<i class="fas fa-graduation-cap fa-2x hvr-grow"></i>
 						</div>
 						<div class="col-10 col-sm-10 col-lg-10 content-box">
 							<ul class="mb-3">
@@ -42,7 +42,7 @@
 				<article class="user-post p-3 mb-3 user-contact bg rounded-border">
 					<div class="row">
 						<div class="col-2 col-sm-2 col-lg-2 ico-box">
-							<i class="far fa-address-card fa-2x"></i>
+							<i class="far fa-address-card fa-2x hvr-grow"></i>
 						</div>
 						<div class="col-10 col-sm-10 col-lg-10 content-box">
 							<ul>
