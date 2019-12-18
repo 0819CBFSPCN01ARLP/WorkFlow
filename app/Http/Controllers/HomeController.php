@@ -25,10 +25,10 @@ class HomeController extends Controller
      * @return \Illuminate\Contracts\Support\Renderable
      */
     public function index(){
-        $posts = Posts::All();
+        $posts = Posts::orderBy('created_at', 'DESC')->get();
         $teams = Teams::All();
-        $profile = Profile::where('user_id', Auth::user()->id)->first();
-      return view('home',compact("posts","teams","profile"));
+        $profileIndex = Profile::where('user_id', Auth::user()->id)->first();
+      return view('home',compact("posts","teams","profileIndex"));
     }
 
     public function aboutus(){

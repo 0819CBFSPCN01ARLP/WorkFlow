@@ -62,7 +62,7 @@
 						</div>
 						<div class="col-10 col-sm-10 col-lg-10 content-box">
 							<ul>
-								<li><strong>Name:</strong> Name<li>
+								<li><strong>Name: </strong><li>
 								<li><strong>Email:</strong> <a href="">Mail</a></li>
 								<li><strong>Telefono:</strong> 221 5123456</li>
 								<li><strong>Oficina:</strong> La Plata</li>
@@ -110,7 +110,7 @@
 				<!-- START:ARTICLE -->
 				<section class="others-post p-3 mb-3">
 					<div class="row">
-                	@forelse ($posts as $post)
+          @forelse ($posts as $post)
 						<article class="bg rounded-border col-12" >
 							<!-- START: USERS-COMMENTS -->
 							<div class="col-12 col-sm-12 col-lg-12 user-info">
@@ -146,10 +146,19 @@
               <!-- START: FEEDBACK-ACTIONS -->
               <div class="col-12 col-sm-12 col-lg-12 p-3 feedback-actions">
                 <ul>
-                  <li><a href="#"><i class="far fa-thumbs-up fa-2x"></i></a></li>
-                  <li>7 likes</li>
-                  <li class="ml-4"><a href="#"><i class="far fa-comment-dots fa-2x"></i></a></li>
-                  <li>10 comments</li>
+                  <li><i class="far fa-thumbs-up fa-2x"></i></li>
+                  <!--<li>0 likes</li>-->
+                  @if( count($post->comment) > 0 )
+                    <li class="ml-4"><i class="far fa-comment-dots fa-2x"></i></li>
+                    <li>{{ count($post->comment) }}
+                      @if( count($post->comment) == 1 )comment
+                      @else comments
+                      @endif
+                    </li>
+                  @else
+                      <li class="ml-4"><i class="far fa-comment-dots fa-2x"></i></li>
+                      <li>0 comments</li>
+                  @endif
                 </ul>
               </div>
 

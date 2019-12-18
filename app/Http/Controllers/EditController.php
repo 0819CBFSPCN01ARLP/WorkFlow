@@ -4,7 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Posts;
-
+use App\Profile;
+use Auth;
 class EditController extends Controller
 {
   public function __construct()
@@ -16,7 +17,8 @@ class EditController extends Controller
   {
   	$where = $form["where"];
   	$post = Posts::find($id);
-   	return view('layouts.edit-post', compact("post","where"));
+    $profileIndex = Profile::where('user_id', Auth::user()->id)->first();
+   	return view('layouts.edit-post', compact("post","where", "profileIndex"));
   }
 
   public function editPostedit(Request $form)
@@ -24,7 +26,7 @@ class EditController extends Controller
    	$post = Posts::find($form["id"]);
    	$where = $form["where"];
 
-   	
+
     $post->text=$form["text"];
 
     // Para guardar la imagen uso estas dos ĺineas

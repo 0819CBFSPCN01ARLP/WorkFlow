@@ -7,8 +7,8 @@ use Illuminate\Foundation\Auth\User;
 
 class Teams extends Model
 {
-    public function user()
+    public function users()
     {
-        return $this->hasMany('App\User');
+        return $this->hasMany('App\User',"team_id");
     }
 }

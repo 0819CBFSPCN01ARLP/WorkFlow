@@ -30,10 +30,8 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 Route::post('/posts', 'PostController@addPost');
 Route::delete('/posts', 'PostController@deletePost');
-
 //Route::post('/profile', 'ProfileController@editProfile');
-
 Auth::routes();
-
-
 Route::post('/comment', 'CommentController@addComment');
+
+Route::get('/teams/{id}', 'TeamsController@teamView');

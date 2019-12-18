@@ -23,9 +23,9 @@
       <!-- START:SECTION -->
       <section class="user-post p-3 mb-3 bg rounded-border">
         <div class="row">
-          @if($profile)
+          @if($profileIndex)
           <figure class="col-2 col-sm-2 col-lg-1 user-logo">
-            <img src="/storage/{{ $profile->image }}" alt="">
+            <img src="/storage/{{ $profileIndex->image }}" alt="">
           </figure>
           @endif
           <div class="col-12 col-sm-10 col-lg-12 user-comment">
@@ -95,10 +95,19 @@
               <!-- START: FEEDBACK-ACTIONS -->
               <div class="col-12 col-sm-12 col-lg-12 p-3 feedback-actions">
                 <ul>
-                  <li><a href="#"><i class="far fa-thumbs-up fa-2x"></i></a></li>
-                  <li>7 likes</li>
-                  <li class="ml-4"><a href="#"><i class="far fa-comment-dots fa-2x"></i></a></li>
-                  <li>10 comments</li>
+                  <li><i class="far fa-thumbs-up fa-2x"></i></li>
+                  <!--<li>7 likes</li>-->
+                  @if( count($post->comment) > 0 )
+                    <li class="ml-4"><i class="far fa-comment-dots fa-2x"></i></li>
+                    <li>{{ count($post->comment) }}
+                      @if( count($post->comment) == 1 )comment
+                      @else comments
+                      @endif
+                    </li>
+                  @else
+                      <li class="ml-4"><i class="far fa-comment-dots fa-2x"></i></li>
+                      <li>0 comments</li>
+                  @endif
                 </ul>
               </div>
               <!-- START: FEEDBACK-ACTIONS -->
@@ -123,7 +132,7 @@
 
             </article>
             @empty
-              <p>No hay posteos</p>
+              <p>There is no posts.</p>
             @endforelse
 
         </div>

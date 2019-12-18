@@ -29,7 +29,7 @@
   <article class="user-post widget-teams p-3 mb-3 teams bg rounded-border">
     <div class="row">
       <div class="col-12 col-sm-12 col-lg-12 pt-2 ico-box">
-        <h3><i class="fas fa-users fa-2x mr-2"></i><a class="teams" href="teams.php">Teams</a></h3>
+        <h3><i class="fas fa-users fa-2x mr-2"></i>Teams</h3>
       </div>
       <div class="col-12 col-sm-12 col-lg-12 content-box">
         <ul class="mb-3 users">

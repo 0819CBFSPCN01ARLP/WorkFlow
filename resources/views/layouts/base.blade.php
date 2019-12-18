@@ -60,8 +60,8 @@
 							<!--<li><a href=""><i class="fas fa-sign-in-alt fa-2x"></i></a></li>-->
 							<li class="user-logo">
 								<a href="{{ url('/profile') }}/{{ Auth::user()->id }}">
-									@if($profile)
-										<img src="/storage/{{ $profile->image }}" alt="">
+									@if($profileIndex)
+										<img src="/storage/{{ $profileIndex->image }}" alt="">
 									@endif
 									<span>{{ Auth::user()->name }}</span>
 								</a>

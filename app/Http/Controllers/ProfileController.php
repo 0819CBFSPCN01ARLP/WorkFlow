@@ -21,17 +21,16 @@ class ProfileController extends Controller
   		$user = User::find((int)$id);
       $posts = $user->posts;
 
-      $profile = Profile::where('user_id', Auth::user()->id)->first();
+      $profile = Profile::where('user_id', $id)->first();
+      $profileIndex = Profile::where('user_id', Auth::user()->id)->first();
       $team = Teams::where('id', $user->team_id)->first();
 
   		$profile_id = $id;
-    	return view('layouts.profile', compact("posts","profile_id", "profile","team"));
+    	return view('layouts.profile', compact("posts","profile_id", "profile","team","profileIndex"));
   }
 
   public function editImg(Request $req)
   {
-
-
       $profile = Profile::where('user_id', Auth::user()->id)->first();
       if( $profile == null){
         $profile = new Profile();
@@ -49,8 +48,7 @@ class ProfileController extends Controller
 
       $profile->save();
       return redirect('/profile/'.$profile->user_id);
-    
+
   }
 
 }
-
