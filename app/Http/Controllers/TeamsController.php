@@ -16,12 +16,12 @@ class TeamsController extends Controller
     }
 
     public function teamView($id){
-        $profile = Profile::where('user_id', Auth::user()->id)->first();
+        $profileIndex = Profile::where('user_id', Auth::user()->id)->first();
         $teams = Teams::find($id);
         // $users = User::where('team_id', $id)->get();
         $users = $teams->users;
         $team_id = $id;
-        return view('layouts/teams',compact("profile","team_id","teams","users"));
+        return view('layouts/teams',compact("profileIndex","team_id","teams","users"));
     }
 
 

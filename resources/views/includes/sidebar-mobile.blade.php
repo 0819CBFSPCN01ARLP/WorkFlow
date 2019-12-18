@@ -2,7 +2,7 @@
 
   <ul class="nav nav-pills" id="pills-tab" role="tablist">
     <li class="nav-item">
-      <a class="nav-link" id="pills-profile-tab" data-toggle="pill" href="#pills-teams" role="tab" aria-selected="false"><i class="fas fa-users fa-2x mr-2" aria-hidden="true"></i></a>
+      <a class="nav-link active show" id="pills-profile-tab" data-toggle="pill" href="#pills-teams" role="tab" aria-selected="true"><i class="fas fa-users fa-2x mr-2" aria-hidden="true"></i></a>
     </li>
     <li class="nav-item">
       <a class="nav-link" id="pills-contact-tab" data-toggle="pill" href="#pills-hashtags" role="tab" aria-selected="false"><i class="fas fa-hashtag fa-2x mr-2" aria-hidden="true"></i></a>
@@ -12,9 +12,13 @@
 
   <div class="tab-content p-3 bg" id="pills-tabContent">
 
-    <div class="tab-pane widget-teams fade" id="pills-teams" role="tabpanel">
+    <div class="tab-pane widget-teams fade active show" id="pills-teams" role="tabpanel">
       <ul class="users">
-        <p class="hastags"><a href="">| Informatics |</a><a href="">Art and Design |</a><a href="">Social Sciences |</a><a href="">Medicine |</a><a href="">Economic Sciences |</a></p>
+        @foreach($teams as $team)
+          <li>
+            <a href="/teams/{{ $team->id }}">{{$team->area}}</a>
+          </li>
+        @endforeach
       </ul>
     </div>
     <!-- END: CONTENT-TAB-TEAMS -->

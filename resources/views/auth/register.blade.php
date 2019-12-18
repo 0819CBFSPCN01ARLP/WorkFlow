@@ -87,7 +87,7 @@
 
             <div class="form-group row mb-0">
                 <div class="col-md-12">
-                    <button class="hvr-shadow contact-but btn btn-outline-info btn-block z-depth-0 my-4 waves-effect" name="submit" type="submit">
+                    <button class="hvr-shadow contact-but btn btn-outline-info btn-block z-depth-0 waves-effect" name="submit" type="submit">
                         {{ __('Register') }}
                     </button>
                 </div>

@@ -1,14 +1,13 @@
-@media screen and (min-width: 1200px) {
+@media screen and (min-width: 1025px) {
 
 	.main-header ul li.search-mob {
 		display: none;}
 	.navbar-bot{
 		display: none;}
+	.inbox-desk .fa-envelope {
+			display: block;}
 	.name-mob {
 		display: none;}
 	.name-desk {
 		display: block;}
-	.inbox-desk .fa-envelope {
-			display: block;}
-
 }

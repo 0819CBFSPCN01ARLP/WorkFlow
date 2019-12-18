@@ -23,12 +23,16 @@
       <!-- START:SECTION -->
       <section class="user-post p-3 mb-3 bg rounded-border">
         <div class="row">
-          @if($profileIndex)
+          @if($profileIndex && $profileIndex->image)
           <figure class="col-2 col-sm-2 col-lg-1 user-logo">
             <img src="/storage/{{ $profileIndex->image }}" alt="">
           </figure>
+          @else
+          <figure class="col-2 col-sm-2 col-lg-1 user-logo">
+            <img src="https://i.ibb.co/p1ydynX/images.png" alt="">
+          </figure>
           @endif
-          <div class="col-12 col-sm-10 col-lg-12 user-comment">
+          <div class="col-10 col-sm-10 col-lg-11 user-comment">
             <div class="user-comment-row">
               <p><strong>Hi {{ Auth::user()->name }}</strong></p>
 
@@ -62,9 +66,7 @@
               <!-- START: USERS-COMMENTS -->
               <div class="col-12 col-sm-12 col-lg-12 user-info">
                 <a href="/profile/{{ $post->user->id }}" class="user-logo mr-3">
-
                     @if($post->user->profile && $post->user->profile->image)
-
                       <img src="/storage/{{ $post->user->profile->image }}" alt="">
                     @else
                        <img src="https://i.ibb.co/p1ydynX/images.png" alt="">
@@ -95,10 +97,8 @@
               <!-- START: FEEDBACK-ACTIONS -->
               <div class="col-12 col-sm-12 col-lg-12 p-3 feedback-actions">
                 <ul>
-                  <li><i class="far fa-thumbs-up fa-2x"></i></li>
-                  <!--<li>7 likes</li>-->
                   @if( count($post->comment) > 0 )
-                    <li class="ml-4"><i class="far fa-comment-dots fa-2x"></i></li>
+                    <li class="ml-4"><i class="far fa-comment-dots"></i></li>
                     <li>{{ count($post->comment) }}
                       @if( count($post->comment) == 1 )comment
                       @else comments

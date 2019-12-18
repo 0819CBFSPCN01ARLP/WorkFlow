@@ -8,7 +8,7 @@
 				<div class="header-user bg">
 					<div class="row">
 						<div class="col-10 offset-1 col-sm-11 offset-sm-1 col-lg-11 offset-lg-1 user-info">
-							@if($profile)
+							@if($profile && $profile->image )
 							<figure class="col-2 col-sm-2 col-lg-2 user-logo">
 								<img src="/storage/{{ $profile->image }}" alt="">
 							</figure>
@@ -39,36 +39,18 @@
 
 			<!-- START: SIDEBAR -->
 			<aside class="col-12 col-sm-12 col-lg-4">
-
-				<!-- START:EDUCATION-BOX -->
-				<article class="user-post mb-3 mt-0 education bg rounded-border">
-					<div class="row">
-						<div class="col-2 col-sm-2 col-lg-2 pt-2 ico-box">
-							<i class="fas fa-graduation-cap fa-2x hvr-grow"></i>
-						</div>
-						<div class="col-10 col-sm-10 col-lg-10 content-box">
-							<ul class="mb-3">
-								<li>{{ $team->area }}</li>
-							</ul>
-						</div>
-					</div>
-				</article><!-- END:EDUCATION-BOX -->
-
 				<!-- START:CONTACT-BOX -->
-				<article class="user-post p-3 mb-3 user-contact bg rounded-border">
+				<article class=" p-3 mb-3 user-contact bg rounded-border">
 					<div class="row">
 						<div class="col-2 col-sm-2 col-lg-2 ico-box">
 							<i class="far fa-address-card fa-2x hvr-grow"></i>
 						</div>
 						<div class="col-10 col-sm-10 col-lg-10 content-box">
 							<ul>
-								<li><strong>Name: </strong><li>
-								<li><strong>Email:</strong> <a href="">Mail</a></li>
-								<li><strong>Telefono:</strong> 221 5123456</li>
-								<li><strong>Oficina:</strong> La Plata</li>
-								<li><strong>Linkedin:</strong> /rossgeller</li>
-								<li><strong>Faceook:</strong> /rossgeller </li>
-								<li><strong>Instagram:</strong> @rossgeller</li>
+								<li><strong>Name:</strong> {{$user->name}}<li>
+                <li><strong>Last Name:</strong> {{$user->last_name}}<li>
+                <li><strong>College:</strong> <a href="/teams/{{$team->id}}">{{ $team->area }}</a></li>
+								<li><strong>Email:</strong> <a href="mailto:{{$user->email}}">{{$user->email}}</a></li>
 							</ul>
 						</div>
 					</div>
@@ -92,14 +74,14 @@
 							</div>
 							@endforeach
 
-							<form class="form--post" action="/posts" method="post" enctype="multipart/form-data">
-               					@csrf
+							<form class="form--post win-modal" action="/posts" method="post" enctype="multipart/form-data">
+               	@csrf
 								<textarea placeholder="What's going on?" name="text"></textarea>
 								<input type="hidden" name="where" value="profile/{{ $profile_id }}">
 								<div class="user-comment-image cameraimg">
-				                    <input type="file" name="image">
-				                    <i class="fas fa-camera fa-2x"></i>
-				                  </div>
+				            <input type="file" name="image">
+				            <i class="fas fa-camera fa-2x"></i>
+				        </div>
 								<button type="submit" name="submit" class="btn-publish icon-gray hvr-icon-rotate">Publish <i class="hvr-icon fab fa-telegram-plane"></i></button>
 							</form>
 						</div>
@@ -137,17 +119,15 @@
 							</div>
 							<div class="col-12 col-sm-12 col-lg-12 user-comment">
 								<p>{{$post["text"]}}</p>
-                      			@if( $post["image"] )
+                  @if( $post["image"] )
 									<img src="/storage/{{$post['image']}}" alt="">
-                      			@endif
+                  @endif
 							</div>
 							<!-- END: USERS-COMMENTS -->
 
               <!-- START: FEEDBACK-ACTIONS -->
               <div class="col-12 col-sm-12 col-lg-12 p-3 feedback-actions">
                 <ul>
-                  <li><i class="far fa-thumbs-up fa-2x"></i></li>
-                  <!--<li>0 likes</li>-->
                   @if( count($post->comment) > 0 )
                     <li class="ml-4"><i class="far fa-comment-dots fa-2x"></i></li>
                     <li>{{ count($post->comment) }}
@@ -156,7 +136,7 @@
                       @endif
                     </li>
                   @else
-                      <li class="ml-4"><i class="far fa-comment-dots fa-2x"></i></li>
+                      <li class="ml-4"><i class="far fa-comment-dots"></i></li>
                       <li>0 comments</li>
                   @endif
                 </ul>
@@ -185,7 +165,7 @@
 							<!-- START: FEEDBACK-ACTIONS -->
 						</article>
                 	@empty
-                		<p>No hay posteos</p>
+                		<p>There is no post.</p>
                 	@endforelse
 					</div>
 				</section><!-- END:ARTICLE -->

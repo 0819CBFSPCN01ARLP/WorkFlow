@@ -26,7 +26,7 @@ class ProfileController extends Controller
       $team = Teams::where('id', $user->team_id)->first();
 
   		$profile_id = $id;
-    	return view('layouts.profile', compact("posts","profile_id", "profile","team","profileIndex"));
+    	return view('layouts.profile', compact("posts","profile_id", "profile","team","profileIndex","user"));
   }
 
   public function editImg(Request $req)
@@ -35,8 +35,6 @@ class ProfileController extends Controller
       if( $profile == null){
         $profile = new Profile();
         $profile->user_id=Auth::user()->id;
-        $profile->username="default";
-        $profile->birthday_date="2019-12-12 16:07:19";
       }
 
       $imagen = $req->file("image");

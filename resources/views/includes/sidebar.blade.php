@@ -4,16 +4,15 @@
   <article class="user-post widget-teams p-3 mb-3 teams bg rounded-border">
     <div class="row">
       <div class="col-12 col-sm-12 col-lg-12 pt-2 ico-box">
-        <h3><i class="fas fa-graduation-cap fa-2x mr-2 hvr-grow"></i><a class="teams" href="/teams">Faculties</a></h3>
+        <h3><i class="fas fa-graduation-cap fa-2x mr-2 hvr-grow"></i><a class="teams" href="/teams">Colleges</a></h3>
       </div>
       <div class="col-12 col-sm-12 col-lg-12 content-box">
         <ul class="mb-3 users">
-          @forelse ($teams as $team)
-            <li class="user-logo">
+          @foreach($teams as $team)
+            <li>
               <a href="/teams/{{ $team->id }}">{{$team->area}}</a>
             </li>
-          @empty
-        @endforelse
+          @endforeach
         </ul>
       </div>
     </div>

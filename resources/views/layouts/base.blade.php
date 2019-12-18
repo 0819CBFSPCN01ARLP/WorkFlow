@@ -8,7 +8,7 @@
 		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 		<link rel="stylesheet" href="/css/style.css">
 		<link rel="stylesheet" media="screen and (min-width:1024px)" href="/css/style-tablet.css">
-		<link rel="stylesheet" media="screen and (min-width:1200px)" href="/css/style-desktop.css">
+		<link rel="stylesheet" media="screen and (min-width:1025px)" href="/css/style-desktop.css">
 		<script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
 		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
@@ -51,17 +51,19 @@
 						  </div>
 						</div>
 						<a class="navbar-brand name-mob" href="{{ url('/') }}">W<strong>F</strong></a>
-						<a class="navbar-brand name-desk" href="{{ url('/') }}">Work<strong>FLow</strong></a>
+						<a class="navbar-brand name-desk" href="{{ url('/') }}">Work<strong>Flow</strong></a>
 					</div>
 
 					<div class="col-6 col-lg-6 py-3 head-options">
 						<ul>
-							<li class="search-mob"><a href="{{ url('/profile/') }}{{ Auth::user()->id }}" class="nav-item nav-link active"><i class="fas fa-user fa-2x"></i></a></li>
+							<li class="search-mob"><a href="{{ url('/profile') }}/{{ Auth::user()->id }}" class="nav-item nav-link active"><i class="fas fa-user fa-2x"></i></a></li>
 							<!--<li><a href=""><i class="fas fa-sign-in-alt fa-2x"></i></a></li>-->
 							<li class="user-logo">
 								<a href="{{ url('/profile') }}/{{ Auth::user()->id }}">
-									@if($profileIndex)
+									@if($profileIndex && $profileIndex->image)
 										<img src="/storage/{{ $profileIndex->image }}" alt="">
+									@else
+										<img src="https://i.ibb.co/p1ydynX/images.png" alt="">
 									@endif
 									<span>{{ Auth::user()->name }}</span>
 								</a>
@@ -98,6 +100,7 @@
 
 <!--Alert-->
 		<script>
+		if(document.querySelector('.win-modal') || document.querySelector('textarea')){
 			var messageAlert = document.querySelector('.win-modal');
 			var inputTextarea = document.querySelector('textarea');
 			messageAlert.onsubmit = function(event){
@@ -108,6 +111,7 @@
 					$('#mymodal').modal();
 				}
 			}
+		}
 		</script>
 
 <!--Back to top-->
